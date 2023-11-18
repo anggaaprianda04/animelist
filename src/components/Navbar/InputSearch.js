@@ -10,10 +10,14 @@ const InputSearch = () => {
   let [checkNumber, setNumber] = React.useState(0);
 
   const handleSearch = (event) => {
-    if (event.key === 'Enter' || event.type === 'click') {
-      event.preventDefault();
-      const keyword = searchRef.current.value;
-      router.push(`/search/${keyword}`);
+    if (searchRef.current.value.length > 0) {
+      if (event.key === 'Enter' || event.type === 'click') {
+        event.preventDefault();
+        const keyword = searchRef.current.value;
+        router.push(`/search/${keyword}`);
+      }
+    } else {
+      null
     }
   };
 
@@ -29,7 +33,7 @@ const InputSearch = () => {
         type="text"
         onKeyDown={handleSearch}
         onChange={() => handleInput()}
-        placeholder="Cari Anime"
+        placeholder="Cari anime.."
       />
       {checkNumber <= 0 ? null : (
         <button onClick={handleSearch}>
