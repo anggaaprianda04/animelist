@@ -10,14 +10,13 @@ const InputSearch = () => {
   let [checkNumber, setNumber] = React.useState(0);
 
   const handleSearch = (event) => {
-    if (searchRef.current.value.length > 0) {
-      if (event.key === 'Enter' || event.type === 'click') {
-        event.preventDefault();
-        const keyword = searchRef.current.value;
-        router.push(`/search/${keyword}`);
-      }
-    } else {
-      null
+    const keyword = searchRef.current.value;
+
+    if (!keyword) return;
+
+    if (event.key === "Enter" || event.type === "click") {
+      event.preventDefault();
+      router.push(`/search/${keyword}`);
     }
   };
 
