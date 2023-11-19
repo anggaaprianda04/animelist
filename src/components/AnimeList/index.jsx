@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 
@@ -5,19 +7,25 @@ const AnimeList = ({ api }) => {
   return (
     <>
       <div className="grid grid-cols-2 gap-4 mt-2 lg:grid-cols-4 md:grid-cols-3">
-        {api.data.map((anime) => {
+        {api.data?.map((anime) => {
           return (
-            <Link href={`${anime.mal_id}`} key={anime.mal_id} className="shadow-lg cursor-pointer text-color-dark hover:text-color-accent hover:transition-all hover:bg-color-secondary">
+            <Link
+              href={`${anime.mal_id}`}
+              key={anime.mal_id}
+              className="shadow-lg cursor-pointer text-color-dark hover:text-color-accent hover:transition-all hover:bg-color-secondary">
               <div className="relative">
                 <Image
                   width={350}
                   height={350}
+                  priority={true}
                   className="object-cover w-full max-h-64"
                   src={anime.images.webp.image_url}
                   alt="image"
                 />
                 <div className="absolute left-0 right-0 flex justify-between w-full px-3 py-1 mt-2 text-color-white bg-color-dark top-56">
-                  <p className="font-semibold text-color-white">Total Episode : {anime.episodes}</p>
+                  <p className="font-semibold text-color-white">
+                    Total Episode : {anime.episodes}
+                  </p>
                   <div className="flex items-center">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

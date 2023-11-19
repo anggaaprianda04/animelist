@@ -6,9 +6,7 @@ export default async function Page({ params }) {
 
   const decodeUri = decodeURI(keyword);
 
-  const response = await fetch(
-    `${process.env.NEXT_API_URL_PUBLIC_BASE}/anime?q=${decodeUri}`
-  );
+  const response = await fetch(`${process.env.baseUrl}/anime?q=${decodeUri}`);
   const searchAnime = await response.json();
 
   return (
