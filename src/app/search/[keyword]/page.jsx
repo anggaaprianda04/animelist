@@ -1,13 +1,12 @@
+import { getAnimeResponse } from "@/app/service/api-anime";
 import AnimeList from "@/components/AnimeList";
 import Header from "@/components/AnimeList/Header";
 
 export default async function Page({ params }) {
   const { keyword } = params;
-
   const decodeUri = decodeURI(keyword);
 
-  const response = await fetch(`${process.env.baseUrl}/anime?q=${decodeUri}`);
-  const searchAnime = await response.json();
+  const searchAnime = await getAnimeResponse("anime", `q=${decodeUri}`);
 
   return (
     <div className="p-2">

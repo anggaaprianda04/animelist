@@ -1,14 +1,14 @@
 import AnimeList from "@/components/AnimeList";
 import Header from "@/components/AnimeList/Header";
+import { getAnimeResponse } from "./service/api-anime";
 
 export default async function Page() {
-  const response = await fetch(`${process.env.baseUrl}/top/anime?limit=8`);
-  const animeTop = await response.json();
+  const animeTop = await getAnimeResponse("top/anime", "limit=8");
 
   return (
     <div className="p-2">
       <section>
-        <Header title="Anime Populer" link="/populer" />
+        <Header title="Anime Popular" link="/popular" />
         <AnimeList api={animeTop} />
       </section>
     </div>

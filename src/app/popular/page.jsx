@@ -4,28 +4,26 @@ import AnimeList from "@/components/AnimeList";
 import HeaderMenu from "@/components/Utilities/HeaderMenu";
 import Pagination from "@/components/Utilities/Pagination";
 import React, { useState, useEffect } from "react";
+import { getAnimeResponse } from "../service/api-anime";
 
 const Page = () => {
   const [page, setPage] = useState(1);
   const [topAnime, setTopAnime] = useState([]);
 
   const fetchData = async () => {
-    const response = await fetch(
-      `${process.env.baseUrl}/top/anime?page=${page}`
-    );
-    const data = await response.json();
-    setTopAnime(data);
+    const animePopuler = await getAnimeResponse("top/anime", `page=${page}`);
+    setTopAnime(animePopuler);
   };
 
   useEffect(() => {
     fetchData();
   }, [page]);
 
-  console.log(topAnime);
+  // console.log("ini", topAnime);
 
   return (
     <div className="p-2">
-      <HeaderMenu title={`Anime Terpopuler #${page}`} />
+      <HeaderMenu title={`Anime Terpopular #${page}`} />
       <AnimeList api={topAnime} />
       <Pagination
         setPage={setPage}

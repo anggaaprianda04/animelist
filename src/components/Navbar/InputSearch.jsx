@@ -32,7 +32,7 @@ const InputSearch = () => {
         type="text"
         onKeyDown={handleSearch}
         onChange={() => handleInput()}
-        placeholder="Cari anime.."
+        placeholder="Search anime.."
       />
       {checkNumber <= 0 ? null : (
         <button onClick={handleSearch}>

@@ -8,6 +8,16 @@ const Pagination = ({ lastPage, page, setPage, currentPage }) => {
     });
   };
 
+  const handleFirstPage = () => {
+    setPage(() => (page = 1));
+    scrollTop();
+  };
+
+  const handleLastPage = () => {
+    setPage(() => lastPage);
+    scrollTop();
+  };
+
   const handleNextPage = () => {
     setPage(() => page + 1);
     scrollTop();
@@ -18,25 +28,21 @@ const Pagination = ({ lastPage, page, setPage, currentPage }) => {
     scrollTop();
   };
 
-  console.log("ini", currentPage);
+  // console.log("ini", currentPage);
 
   return (
-    <div className="flex items-center justify-center gap-4 text-2xl">
-      {/* <button onClick={handlePrevPage}>Prev</button> */}
-      <Button
-        title={"Prev"}
-        disabled={currentPage == 1 ? true : false}
-        onClick={handlePrevPage}
-      />
+    <div className="flex items-center justify-center gap-4 text-2xl text-color-white">
+      {page <= 1 ? null : <Button title={"First"} onClick={handleFirstPage} />}
+      {page <= 1 ? null : <Button title={"Prev"} onClick={handlePrevPage} />}
       <p>
         {page} of {lastPage}
       </p>
-      <Button
-        title={"Next"}
-        disabled={currentPage == lastPage ? true : false}
-        onClick={handleNextPage}
-      />
-      {/* <button onClick={handleNextPage}>Next</button> */}
+      {page >= lastPage ? null : (
+        <Button title={"Next"} onClick={handleNextPage} />
+      )}
+      {page >= lastPage ? null : (
+        <Button title={"Last"} onClick={handleLastPage} />
+      )}
     </div>
   );
 };

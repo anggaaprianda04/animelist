@@ -10,9 +10,9 @@ const AnimeList = ({ api }) => {
         {api.data?.map((anime) => {
           return (
             <Link
-              href={`${anime.mal_id}`}
+              href={`/anime/${anime.mal_id}`}
               key={anime.mal_id}
-              className="shadow-lg cursor-pointer text-color-dark hover:text-color-accent hover:transition-all hover:bg-color-secondary">
+              className="shadow-lg cursor-pointer text-color-white hover:shadow-color-accent hover:text-color-accent hover:transition-all hover:bg-color-secondary">
               <div className="relative">
                 <Image
                   width={350}
