@@ -12,7 +12,15 @@ export default async function Page({ params }) {
     <div className="p-2">
       <section>
         <Header title={`Hasil pencarian ${decodeUri}....`} />
-        <AnimeList api={searchAnime} />
+        {searchAnime.data.length === 0 ? (
+          <div className="flex items-center justify-center max-w-xl min-h-screen mx-auto">
+            <h3 className="text-2xl font-bold mb-36 text-color-white">
+              List anime not found...
+            </h3>
+          </div>
+        ) : (
+          <AnimeList api={searchAnime} />
+        )}
       </section>
     </div>
   );

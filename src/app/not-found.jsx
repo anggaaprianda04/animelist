@@ -11,7 +11,7 @@ const Page = () => {
         <h3 className="text-2xl font-bold text-color-white">Not Found</h3>
         <Link href="/">
           <button className="w-64 py-3 mt-2 text-xl font-semibold rounded-md hover:bg-opacity-90 hover:transition-all bg-color-accent text-color-dark px-7">
-            Kembali
+            HomePage
           </button>
         </Link>
       </div>

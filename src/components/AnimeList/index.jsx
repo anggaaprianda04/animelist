@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 const AnimeList = ({ api }) => {
+  // console.log("hasil", api);
+
   return (
     <>
       <div className="grid grid-cols-2 gap-4 mt-2 lg:grid-cols-4 md:grid-cols-3">
@@ -50,7 +52,7 @@ const AnimeList = ({ api }) => {
                 </h3>
                 <p className="mt-2">Genre : </p>
                 <div className="flex gap-1">
-                  {anime.genres.map((genre) => {
+                  {anime.genres?.map((genre) => {
                     return (
                       <div key={genre.mal_id}>
                         <p>{genre.name}</p>
