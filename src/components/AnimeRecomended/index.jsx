@@ -14,7 +14,6 @@ const AnimeRecomended = ({ api }) => {
   return (
     <>
       <Swiper
-        autoHeight={true}
         modules={[Pagination, Autoplay]}
         spaceBetween={50}
         slidesPerView={3}

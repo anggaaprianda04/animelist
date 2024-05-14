@@ -21,9 +21,13 @@ export default async function Page() {
         <Header title="Anime Recommendation" />
         <AnimeRecomended api={animeRecommended} />
       </section>
-      <section className="bg-color-secondary">
+      <section className="mt-4 bg-color-secondary">
         <Header title="Anime Popular" link="/popular" />
         <AnimeList api={animeTop} />
+      </section>
+      <section className="mt-4 mb-4 bg-color-secondary">
+        <Header title="News Anime" link="/" />
+        {/* <AnimeList api={animeTop} /> */}
       </section>
     </div>
   );
