@@ -3,8 +3,13 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        hostname: "cdn.myanimelist.net"
-      }
+        protocol: 'https',
+        hostname: "cdn.myanimelist.net",
+      },
+      {
+        protocol: 'https',
+        hostname: "placehold.co"
+      },
     ]
   },
   env: {

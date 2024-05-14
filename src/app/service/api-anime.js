@@ -19,3 +19,10 @@ export const reproduce = (data, gap) => {
 
     return response;
 }
+
+export const parseGenre = (data) => {
+    const result = data.map((result) => {
+        return result.name;
+    })
+    return result.join(", ");
+}

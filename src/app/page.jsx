@@ -1,5 +1,6 @@
 import AnimeList from "@/components/AnimeList";
 import Header from "@/components/AnimeList/Header";
+import AnimeRecomended from "@/components/AnimeRecomended";
 import {
   getNestedAnimeResponse,
   getAnimeResponse,
@@ -12,17 +13,17 @@ export default async function Page() {
     "recommendations/anime",
     "entry"
   );
-  animeRecommended = reproduce(animeRecommended, 8);
+  animeRecommended = reproduce(animeRecommended, 16);
 
   return (
-    <div className="p-2">
-      <section>
+    <div className="px-10">
+      <section className="mt-4 bg-color-secondary">
+        <Header title="Anime Recommendation" />
+        <AnimeRecomended api={animeRecommended} />
+      </section>
+      <section className="bg-color-secondary">
         <Header title="Anime Popular" link="/popular" />
         <AnimeList api={animeTop} />
-      </section>
-      <section className="mt-4">
-        <Header title="Recommendation" />
-        <AnimeList api={animeRecommended} />
       </section>
     </div>
   );

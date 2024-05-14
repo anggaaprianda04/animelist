@@ -6,7 +6,7 @@ import Image from "next/image";
 const Page = async ({ params: { id } }) => {
   const anime = await getAnimeResponse(`anime/${id}`);
   return (
-    <div className="px-2 py-2">
+    <div className="px-2 py-2 bg-color-secondary">
       <div className="mb-4">
         <h1 className="text-2xl text-color-white">{anime.data.title}</h1>
       </div>
@@ -25,12 +25,12 @@ const Page = async ({ params: { id } }) => {
       </div>
       <div className="flex flex-col gap-4 mx-auto lg:flex-row text-color-white">
         <Image
-          width={900}
+          width={1200}
           height={700}
           style={{ objectFit: "cover" }}
           src={anime.data.images.webp.image_url}
           alt={anime.data.images.jpg.image_url}
-          className="w-full rounded shadow-2xl shadow-color-white"
+          className="w-full rounded shadow-lg shadow-color-white"
         />
         <div className="flex flex-col">
           <div className="mb-3">

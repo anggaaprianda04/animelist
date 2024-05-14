@@ -28,7 +28,7 @@ const InputSearch = () => {
     <div className="relative">
       <input
         ref={searchRef}
-        className="w-64 p-2 mt-2 rounded-md md:mt-0"
+        className="w-64 p-2 mt-2 rounded-lg text-color-white md:mt-0 bg-color-secondary focus:outline-none focus:ring-4 focus:ring-offset-color-secondary focus:transition-all focus:duration-100"
         type="text"
         onKeyDown={handleSearch}
         onChange={() => handleInput()}
@@ -36,7 +36,10 @@ const InputSearch = () => {
       />
       {checkNumber <= 0 ? null : (
         <button onClick={handleSearch}>
-          <MagnifyingGlass className="absolute top-1 end-3" size={30} />
+          <MagnifyingGlass
+            className="absolute text-color-white top-1 end-3"
+            size={30}
+          />
         </button>
       )}
     </div>
