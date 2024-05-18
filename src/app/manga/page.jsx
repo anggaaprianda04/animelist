@@ -34,7 +34,7 @@ const Page = () => {
         <Loading />
       ) : (
         <div className="px-4">
-          <HeaderMenu title={`List Manga page ${page}`} />
+          <HeaderMenu title={`List Manga #${page}`} />
           <MangaList api={listManga} />
           <div className="mb-10"></div>
           <Pagination

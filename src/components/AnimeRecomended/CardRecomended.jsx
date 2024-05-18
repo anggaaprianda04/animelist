@@ -15,8 +15,8 @@ const CardRecomended = ({ anime }) => {
           priority={true}
           quality={80}
           style={{ objectFit: "cover" }}
-          alt={anime.images.webp.image_url}
-          src={anime.images.webp.image_url}
+          alt={anime.images.webp.large_image_url}
+          src={anime.images.webp.large_image_url}
         />
         <p className="pt-2 ml-4 font-extrabold text-color-white line-clamp-1">{`Anime : ${anime.title}`}</p>
       </div>

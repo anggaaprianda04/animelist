@@ -17,6 +17,8 @@ const AnimeList = ({ api }) => {
     };
   }, null);
 
+  console.log("api", api);
+
   return (
     <>
       {loading ? (
@@ -35,10 +37,10 @@ const AnimeList = ({ api }) => {
                     width={350}
                     height={350}
                     priority={true}
-                    quality={80}
+                    quality={100}
                     style={{ objectFit: "cover" }}
                     className="w-full rounded-t-lg max-h-64"
-                    src={anime.images.webp.image_url}
+                    src={anime.images.webp.large_image_url}
                     alt="image"
                   />
                   {checkTotalEpisode ? (
@@ -64,7 +66,9 @@ const AnimeList = ({ api }) => {
                       </div>
                     </div>
                   ) : (
-                    <div></div>
+                    <div className="absolute left-0 right-0 w-full px-3 py-1 mt-2 text-color-white bg-color-primary top-56">
+                      <span>-</span>
+                    </div>
                   )}
                 </div>
                 <div className="p-2 rounded-b-xl">

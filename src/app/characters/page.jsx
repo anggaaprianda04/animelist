@@ -36,7 +36,7 @@ const Page = () => {
         <Loading />
       ) : (
         <>
-          <HeaderMenu title={`List Characters page ${page}`} />
+          <HeaderMenu title={`List Characters #${page}`} />
           <div className="grid grid-cols-5 gap-4 px-4 mb-4">
             {listCharacters.data?.map((character, index) => {
               return (

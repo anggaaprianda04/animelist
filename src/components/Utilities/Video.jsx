@@ -17,7 +17,7 @@ const Video = ({ youtubeId }) => {
 
   const VideoPlayer = () => {
     return (
-      <div className="fixed bottom-3 right-3">
+      <div className="fixed bottom-14 right-3">
         <button
           onClick={handleVideoPlayer}
           className="float-right w-10 p-2 mb-2 font-bold rounded-3xl text-color-secondary bg-color-white">

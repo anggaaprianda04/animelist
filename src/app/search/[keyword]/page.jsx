@@ -1,27 +1,66 @@
+"use client";
+
 import { getAnimeResponse } from "@/app/service/api-anime";
 import AnimeList from "@/components/AnimeList";
 import Header from "@/components/AnimeList/Header";
+import CardSkeleton from "@/components/Utilities/CardSkeleton";
+import HeaderMenu from "@/components/Utilities/HeaderMenu";
+import Pagination from "@/components/Utilities/Pagination";
+import React, { useEffect, useState } from "react";
 
-export default async function Page({ params }) {
+export default function Page({ params }) {
   const { keyword } = params;
   const decodeUri = decodeURI(keyword);
+  const [loading, setLoading] = useState(false);
+  const [anime, setAnime] = useState({});
+  const [page, setPage] = useState(1);
 
-  const searchAnime = await getAnimeResponse("anime", `q=${decodeUri}`);
+  console.log("search", decodeUri);
+
+  const fetchData = async () => {
+    setLoading(true);
+    await getAnimeResponse("anime", `q=${decodeUri}&page=${page}`)
+      .then((res) => {
+        console.log("res", res);
+        setAnime(res);
+        setLoading(false);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [page]);
+
+  console.log("anime", anime);
 
   return (
-    <div className="p-2">
-      <section>
-        <Header title={`Hasil pencarian ${decodeUri}....`} />
-        {searchAnime.data.length === 0 ? (
-          <div className="flex items-center justify-center max-w-xl min-h-screen mx-auto">
-            <h3 className="text-2xl font-bold mb-36 text-color-white">
-              List anime not found...
-            </h3>
-          </div>
+    <>
+      <div className="p-2">
+        {loading ? (
+          <CardSkeleton />
         ) : (
-          <AnimeList api={searchAnime} />
+          <>
+            <section>
+              <Header title={`Hasil pencarian ${decodeUri}....`} />
+              <HeaderMenu
+                title={`List anime by search ${decodeUri} #${page}`}
+              />
+              <AnimeList api={anime} />
+            </section>
+            {!anime.pagination?.has_next_page ? (
+              <div></div>
+            ) : (
+              <Pagination
+                setPage={setPage}
+                page={page}
+                currentPage={anime.pagination?.current_page}
+                lastPage={anime.pagination?.last_visible_page}
+              />
+            )}
+          </>
         )}
-      </section>
-    </div>
+      </div>
+    </>
   );
 }
