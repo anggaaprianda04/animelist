@@ -2,9 +2,9 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="max-w-full p-3 bg-color-dark h-68">
+    <div className="absolute left-0 right-0 max-w-full p-3 -bottom-20 bg-color-dark h-68">
       <p className="font-semibold text-center text-color-white">
-        Copyright @ MyAnimeList 2024. All rights reserved
+        Copyright @ MyAnimeList 2024. Angga Aprianda
       </p>
     </div>
   );

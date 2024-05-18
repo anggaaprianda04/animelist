@@ -1,48 +1,51 @@
 "use client";
 
-import AnimeList from "@/components/AnimeList";
+import MangaList from "@/components/MangaList";
 import HeaderMenu from "@/components/Utilities/HeaderMenu";
 import Pagination from "@/components/Utilities/Pagination";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Loading from "../loading";
 import { getAnimeResponse } from "../service/api-anime";
 
 const Page = () => {
   const [page, setPage] = useState(1);
-  const [topAnime, setTopAnime] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [listManga, setListManga] = useState([]);
 
   const fetchData = async () => {
     setLoading(true);
-    await getAnimeResponse("top/anime", `page=${page}`)
-      .then((val) => {
-        setTopAnime(val);
+    await getAnimeResponse("manga", `page=${page}`)
+      .then((res) => {
+        setListManga(res);
         setLoading(false);
       })
-      .catch((err) => console.log(err));
+      .catch((error) => console.log(error));
   };
 
   useEffect(() => {
     fetchData();
   }, [page]);
 
+  console.log(`manga ${page}`, listManga);
+
   return (
-    <div className="p-2">
+    <>
       {loading ? (
         <Loading />
       ) : (
-        <>
-          <HeaderMenu title={`Anime Popular #${page}`} />
-          <AnimeList api={topAnime} />
+        <div className="px-4">
+          <HeaderMenu title={`List Manga page ${page}`} />
+          <MangaList api={listManga} />
+          <div className="mb-10"></div>
           <Pagination
+            currentPage={listManga.pagination?.current_page}
+            lastPage={listManga.pagination?.last_visible_page}
             setPage={setPage}
             page={page}
-            currentPage={topAnime.pagination?.current_page}
-            lastPage={topAnime.pagination?.last_visible_page}
           />
-        </>
+        </div>
       )}
-    </div>
+    </>
   );
 };
 

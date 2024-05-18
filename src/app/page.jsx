@@ -1,6 +1,7 @@
 import AnimeList from "@/components/AnimeList";
 import Header from "@/components/AnimeList/Header";
 import AnimeRecomended from "@/components/AnimeRecomended";
+import MangaList from "@/components/MangaList";
 import {
   getNestedAnimeResponse,
   getAnimeResponse,
@@ -9,6 +10,8 @@ import {
 
 export default async function Page() {
   const animeTop = await getAnimeResponse("top/anime", "limit=8");
+  const getManga = await getAnimeResponse("manga", "limit=6");
+
   let animeRecommended = await getNestedAnimeResponse(
     "recommendations/anime",
     "entry"
@@ -26,8 +29,8 @@ export default async function Page() {
         <AnimeList api={animeTop} />
       </section>
       <section className="mt-4 mb-4 bg-color-secondary">
-        <Header title="News Anime" link="/" />
-        {/* <AnimeList api={animeTop} /> */}
+        <Header title="Manga" link="/manga" />
+        <MangaList api={getManga} />
       </section>
     </div>
   );
