@@ -24,6 +24,8 @@ const InputSearch = () => {
     setNumber(searchRef.current.value.length);
   };
 
+  console.log("ketik", searchRef.current.value);
+
   return (
     <div className="relative">
       <input

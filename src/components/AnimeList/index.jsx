@@ -17,7 +17,7 @@ const AnimeList = ({ api }) => {
     };
   }, null);
 
-  console.log("api", api);
+  // console.log("api", api);
 
   return (
     <>

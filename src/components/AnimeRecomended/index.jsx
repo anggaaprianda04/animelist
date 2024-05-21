@@ -19,19 +19,19 @@ const AnimeRecomended = ({ api }) => {
     return () => {
       api, setLoading(false);
     };
-  }, null);
+  }, []);
 
   return (
     <>
       {loading ? (
         <Swiper
           modules={[Pagination, Autoplay]}
-          spaceBetween={50}
+          spaceBetween={20}
           slidesPerView={3}
           autoplay={{ delay: 2000 }}
           pagination={{ clickable: true }}
           style={{
-            "--swiper-pagination-top": "252px",
+            "--swiper-pagination-top": "259px",
             "--swiper-pagination-color": "#FFBA08",
             "--swiper-pagination-bullet-inactive-color": "#999999",
             "--swiper-pagination-bullet-inactive-opacity": "1",
