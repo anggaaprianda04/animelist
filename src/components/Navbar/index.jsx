@@ -1,19 +1,13 @@
-import Link from "next/link";
-import InputSearch from "./InputSearch";
+import InputSearch from "../Utilities/InputSearch";
+import CardNavbar from "./CardNavbar";
 
 const Navbar = () => {
   return (
-    <div className="flex flex-col justify-between bg-color-dark md:items-center md:p-4 md:flex-row">
-      <div className="flex gap-6 text-color-white">
-        <Link href="/" className="text-xl font-bold">
-          MYANIMELIST
-        </Link>
-        <Link href="/characters" className="text-lg font-medium">
-          Characters
-        </Link>
-        <Link href="/magazines" className="text-lg font-medium">
-          Magazines
-        </Link>
+    <div className="flex flex-col justify-between bg-color-primary md:items-center md:p-4 md:flex-row">
+      <div className="flex gap-2 ">
+        <CardNavbar link="/" title="MYANIMELIST" />
+        <CardNavbar link="/characters" title="Characters" />
+        <CardNavbar link="/magazines" title="Magazines" />
       </div>
       <InputSearch />
     </div>

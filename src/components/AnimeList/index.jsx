@@ -72,7 +72,7 @@ const AnimeList = ({ api }) => {
                   )}
                 </div>
                 <div className="p-2 rounded-b-xl">
-                  <h3 className="text-sm font-bold truncate md:text-xl">
+                  <h3 className="text-sm font-semibold truncate md:text-lg">
                     {anime.title}
                   </h3>
                   {checkGenre ? (

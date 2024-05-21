@@ -24,7 +24,7 @@ const InputSearch = () => {
     setNumber(searchRef.current.value.length);
   };
 
-  console.log("ketik", searchRef.current.value);
+  // console.log("ketik", searchRef.current.value);
 
   return (
     <div className="relative">
@@ -39,8 +39,8 @@ const InputSearch = () => {
       {checkNumber <= 0 ? null : (
         <button onClick={handleSearch}>
           <MagnifyingGlass
-            className="absolute text-color-white top-1 end-3"
-            size={30}
+            className="absolute text-color-white top-2 end-3"
+            size={22}
           />
         </button>
       )}

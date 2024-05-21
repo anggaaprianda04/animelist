@@ -15,14 +15,14 @@ img {
 }
 
 img:hover {
-    scale: 102%;
+    scale: 105%;
 }
 
 .spinner {
     width: 56px;
     height: 56px;
     border-radius: 50%;
-    border: 9px solid #ffc639;
+    border: 9px solid #6b8472;
     animation: spinner-bulqg1 0.8s infinite linear alternate,
         spinner-oaa3wk 1.6s infinite linear;
 }

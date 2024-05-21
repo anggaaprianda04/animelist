@@ -5,11 +5,11 @@ const CardCharacter = ({ character, index }) => {
   return (
     <div
       key={index}
-      className="p-3 transition-colors rounded-md bg-color-white hover:bg-color-dark hover:duration-75 hover:text-color-white">
+      className="p-3 transition-colors rounded-md hover:shadow-color-accent bg-color-white hover:bg-color-dark hover:duration-75 hover:shadow-2xl hover:text-color-white">
       <div className="flex justify-between gap-2">
-        <div className="flex flex-col justify-between">
+        <div className="flex flex-col justify-between w-1/2">
           <div className="flex flex-col">
-            <p className="text-xl font-semibold">{character.name}</p>
+            <p className="text-lg font-semibold">{character.name}</p>
             <p>{character.name_kanji}</p>
           </div>
           <div className="flex gap-3">
@@ -21,7 +21,7 @@ const CardCharacter = ({ character, index }) => {
           </div>
         </div>
         <Image
-          className="object-cover rounded-md w-44 h-44"
+          className="object-cover w-2/5 rounded-md h-44"
           width={100}
           height={100}
           src={character.images.webp.image_url}
