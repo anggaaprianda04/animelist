@@ -20,7 +20,7 @@ const MangaList = ({ api }) => {
   return (
     <>
       {loading ? (
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {api.data?.map((manga, index) => {
             return (
               <Link key={index} href={manga.url} target={"_blank"}>
@@ -35,8 +35,8 @@ const MangaList = ({ api }) => {
                     src={manga.images.webp.large_image_url}
                     alt={manga.images.webp.large_image_url}
                   />
-                  <div className="flex flex-col justify-between w-2/3">
-                    <div className="flex flex-col gap-2 p-2 text-sm rounded-md bg-color-secondary">
+                  <div className="flex flex-col justify-between w-2/3 text-xs md:text-sm">
+                    <div className="flex flex-col gap-2 p-2 rounded-md bg-color-secondary">
                       <p className="line-clamp-1">Title : {manga.title}</p>
                       <p className="line-clamp-1">
                         Published : {manga.published.string}
@@ -49,7 +49,7 @@ const MangaList = ({ api }) => {
                         Author : {parseData(manga.authors)}
                       </p>
                     </div>
-                    <div className="flex gap-3 mt-2 text-xs">
+                    <div className="flex gap-3 mt-2">
                       <div className="flex flex-col items-center">
                         <p>Rangked</p>
                         <span>{manga.rank}</span>

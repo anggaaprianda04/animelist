@@ -27,11 +27,21 @@ const AnimeRecomended = ({ api }) => {
         <Swiper
           modules={[Pagination, Autoplay]}
           spaceBetween={20}
-          slidesPerView={3}
           autoplay={{ delay: 2000 }}
           pagination={{ clickable: true }}
+          breakpoints={{
+            576: {
+              slidesPerView: 2,
+            },
+            768: {
+              slidesPerView: 3,
+            },
+            1024: {
+              slidesPerView: 4,
+            },
+          }}
           style={{
-            "--swiper-pagination-top": "259px",
+            "--swiper-pagination-top": "260px",
             "--swiper-pagination-color": "#FFBA08",
             "--swiper-pagination-bullet-inactive-color": "#999999",
             "--swiper-pagination-bullet-inactive-opacity": "1",
