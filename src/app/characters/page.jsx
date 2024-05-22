@@ -37,8 +37,10 @@ const Page = () => {
         <>
           <HeaderMenu title={`List Characters #${page}`} />
           <div className="grid grid-cols-2 gap-4 px-4 mb-4 md:grid-cols-3 lg:grid-cols-5">
-            {listCharacters.data?.map((character, index) => {
-              return <CardCharacter character={character} index={index} />;
+            {listCharacters.data?.map((character) => {
+              return (
+                <CardCharacter key={character.mal_id} character={character} />
+              );
             })}
           </div>
           <Pagination

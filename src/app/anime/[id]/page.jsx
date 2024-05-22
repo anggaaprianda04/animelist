@@ -8,35 +8,31 @@ const Page = async ({ params: { id } }) => {
   const anime = await getAnimeResponse(`anime/${id}`);
   return (
     <div className="p-4 bg-color-secondary">
-      <div className="grid grid-cols-2 gap-8 mx-auto text-color-white">
-        <div className="flex flex-col">
+      <div className="grid grid-cols-1 gap-8 mx-auto lg:grid-cols-2 text-color-white">
+        <div className="flex flex-col text-sm md:text-lg">
           <div className="mb-3">
             <p className="mb-4 text-2xl">Synopsis :</p>
-            <p className="text-lg text-justify indent-8">
-              {anime.data.synopsis}
-            </p>
+            <p className="text-justify indent-8">{anime.data.synopsis}</p>
           </div>
           <div className="mb-3">
             <h3 className="text-2xl">Information :</h3>
-            <p className="text-lg text-justify">
+            <p className="text-justify">
               {anime.data.background ?? "Information anime not ready"}
             </p>
           </div>
           <div className="mb-3">
             <h3 className="text-2xl">Start :</h3>
-            <p className="text-lg text-justify">{anime.data.aired.string}</p>
+            <p className="text-justify">{anime.data.aired.string}</p>
           </div>
           <div className="mb-3">
             <h3 className="text-2xl">Season :</h3>
-            <p className="text-lg text-justify">
+            <p className="text-justify">
               {anime.data?.season?.toUpperCase() ?? "Season is not ready"}
             </p>
           </div>
           <div className="mb-3">
             <h3 className="text-2xl">Genre :</h3>
-            <p className="text-lg text-justify">
-              {parseData(anime.data?.genres)}
-            </p>
+            <p className="text-justify">{parseData(anime.data?.genres)}</p>
           </div>
         </div>
         <div>
@@ -46,7 +42,7 @@ const Page = async ({ params: { id } }) => {
               <span> {`(${anime.data.title_japanese})`}</span>
             </h1>
           </div>
-          <div className="flex gap-2 ">
+          <div className="flex flex-col gap-2 sm:flex-row ">
             <div className="flex flex-col mb-4 overflow-y-auto justify-items-start">
               <CardInformation
                 title="Total Episode"
@@ -73,7 +69,7 @@ const Page = async ({ params: { id } }) => {
               quality={100}
               src={anime.data.images.webp.large_image_url}
               alt={anime.data.images.webp.large_image_url}
-              className="rounded-md shadow-lg w-80 max-h-fit "
+              className="object-cover rounded-md shadow-lg sm w-60 h-60 md:w-80 md:h-80"
             />
           </div>
         </div>

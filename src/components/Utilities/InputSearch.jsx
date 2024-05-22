@@ -2,12 +2,12 @@
 
 import { MagnifyingGlass } from "@phosphor-icons/react";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useRef, useState } from "react";
 
 const InputSearch = () => {
   const router = useRouter();
-  const searchRef = React.useRef();
-  let [checkNumber, setNumber] = React.useState(0);
+  const searchRef = useRef("");
+  const [number, setNumber] = useState(0);
 
   const handleSearch = (event) => {
     const keyword = searchRef.current.value;
@@ -15,8 +15,8 @@ const InputSearch = () => {
     if (!keyword || keyword.trim() == "") return;
 
     if (event.key === "Enter" || event.type === "click") {
-      event.preventDefault();
       router.push(`/search/${keyword}`);
+      event.preventDefault();
     }
   };
 
@@ -24,7 +24,7 @@ const InputSearch = () => {
     setNumber(searchRef.current.value.length);
   };
 
-  // console.log("ketik", searchRef.current.value);
+  console.log("ketik", searchRef.current?.value);
 
   return (
     <div className="relative px-2 sm:px-0">
@@ -36,7 +36,7 @@ const InputSearch = () => {
         onChange={() => handleInput()}
         placeholder="Search anime.."
       />
-      {checkNumber <= 0 ? null : (
+      {number <= 0 ? null : (
         <button onClick={handleSearch}>
           <MagnifyingGlass
             className="absolute text-color-white top-2 end-3"

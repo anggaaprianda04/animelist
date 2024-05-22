@@ -8,14 +8,15 @@ import CardSkeleton from "../Utilities/CardSkeleton";
 
 const AnimeList = ({ api }) => {
   const [loading, setLoading] = useState(false);
+  const [animes, setAnimes] = useState({});
 
   useEffect(() => {
     setLoading(true);
     return () => {
-      api;
+      setAnimes(api);
       setLoading(false);
     };
-  }, null);
+  }, []);
 
   // console.log("api", api);
 
@@ -23,7 +24,7 @@ const AnimeList = ({ api }) => {
     <>
       {loading ? (
         <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 md:grid-cols-3">
-          {api.data?.map((anime) => {
+          {animes.data?.map((anime) => {
             const checkGenre = anime.genres;
             const checkTotalEpisode = anime.episodes;
             return (
@@ -39,12 +40,12 @@ const AnimeList = ({ api }) => {
                     priority={true}
                     quality={100}
                     style={{ objectFit: "cover" }}
-                    className="w-full rounded-t-lg max-h-64"
+                    className="w-full h-64 rounded-t-lg"
                     src={anime.images.webp.large_image_url}
                     alt="image"
                   />
                   {checkTotalEpisode ? (
-                    <div className="absolute left-0 right-0 flex justify-between w-full px-3 py-1 mt-2 text-color-white bg-color-primary top-56">
+                    <div className="absolute left-0 right-0 justify-between hidden w-full px-3 py-1 mt-2 sm:flex text-color-white bg-color-primary top-56">
                       <p className="font-semibold text-color-white">
                         Total Episode : {anime.episodes}
                       </p>
@@ -76,7 +77,7 @@ const AnimeList = ({ api }) => {
                     {anime.title}
                   </h3>
                   {checkGenre ? (
-                    <div>
+                    <div className="text-sm md:text-xl">
                       <p className="mt-2">Genre : </p>
                       <div className="flex gap-1">
                         <div>

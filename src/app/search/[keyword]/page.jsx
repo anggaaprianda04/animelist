@@ -32,7 +32,7 @@ export default function Page({ params }) {
     fetchData();
   }, [page]);
 
-  console.log("anime", anime);
+  // console.log("anime", anime);
 
   return (
     <>
@@ -46,7 +46,15 @@ export default function Page({ params }) {
               <HeaderMenu
                 title={`List anime by search ${decodeUri} #${page}`}
               />
-              <AnimeList api={anime} />
+              {anime.data?.length <= 0 ? (
+                <div className="flex justify-center">
+                  <p className="text-lg font-semibold text-center text-color-accent">
+                    Tidak ada <br /> anime yang ditemukan!
+                  </p>
+                </div>
+              ) : (
+                <AnimeList api={anime} />
+              )}
             </section>
             {!anime.pagination?.has_next_page ? (
               <div></div>

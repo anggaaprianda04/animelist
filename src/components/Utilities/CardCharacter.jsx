@@ -1,11 +1,9 @@
 import Image from "next/image";
 import { IoIosStar } from "react-icons/io";
 
-const CardCharacter = ({ character, index }) => {
+const CardCharacter = ({ character }) => {
   return (
-    <div
-      key={index}
-      className="p-3 transition-colors rounded-md hover:shadow-color-accent bg-color-white hover:bg-color-dark hover:duration-75 hover:shadow-2xl hover:text-color-white">
+    <div className="p-3 transition-colors rounded-md hover:shadow-color-accent bg-color-white hover:bg-color-dark hover:duration-75 hover:shadow-2xl hover:text-color-white">
       <div className="flex justify-between gap-2">
         <div className="flex flex-col justify-between w-1/2">
           <div className="flex flex-col">

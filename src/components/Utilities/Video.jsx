@@ -38,7 +38,7 @@ const Video = ({ youtubeId }) => {
       <button
         onClick={handleVideoPlayer}
         className="fixed px-3 py-1 font-medium transition-all duration-300 rounded-md hover:scale-x-105 bottom-3 right-3 bg-color-white text-color-dark">
-        Buka Trailer
+        Open Trailer
       </button>
     );
   };
