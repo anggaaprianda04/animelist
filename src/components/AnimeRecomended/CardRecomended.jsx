@@ -6,8 +6,8 @@ import React from "react";
 const CardRecomended = ({ anime }) => {
   //   console.log("kala", anime);
   return (
-    <div className="w-auto rounded-md shadow-lg shadow-color-dark bg-color-dark">
-      <div className="flex flex-col p-1 mb-4">
+    <div className="w-auto rounded-md shadow-lg hover:shadow-color-secondary bg-color-secondary">
+      <div className="flex flex-col p-1 mb-4 rounded-md bg-color-secondary">
         <Image
           className="h-56 rounded-md"
           width={400}
@@ -18,7 +18,9 @@ const CardRecomended = ({ anime }) => {
           alt={anime.images.webp.large_image_url}
           src={anime.images.webp.large_image_url}
         />
-        <p className="pt-2 ml-4 font-extrabold text-color-white line-clamp-1">{`Anime : ${anime.title}`}</p>
+        <p className="pt-2 ml-4 font-extrabold text-center text-color-white line-clamp-1">
+          {anime.title}
+        </p>
       </div>
     </div>
   );

@@ -23,15 +23,14 @@ const AnimeList = ({ api }) => {
   return (
     <>
       {loading ? (
-        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 md:grid-cols-3">
+        <div className="grid grid-cols-2 gap-4 lg:grid-cols-6 md:grid-cols-3">
           {animes.data?.map((anime) => {
-            const checkGenre = anime.genres;
             const checkTotalEpisode = anime.episodes;
             return (
               <Link
                 href={`/anime/${anime.mal_id}`}
                 key={anime.mal_id}
-                className="shadow-2xl cursor-pointer shadow-color-dark rounded-xl bg-color-dark text-color-white hover:shadow-color-accent hover:text-color-accent hover:transition-all hover:bg-color-secondary">
+                className="w-64 shadow-2xl cursor-pointer rounded-xl bg-color-dark text-color-white hover:shadow-color-secondary hover:transition-all hover:bg-color-secondary">
                 <div className="relative">
                   <Image
                     loader={!loading ? imageLoader : null}
@@ -72,22 +71,10 @@ const AnimeList = ({ api }) => {
                     </div>
                   )}
                 </div>
-                <div className="p-2 rounded-b-xl">
-                  <h3 className="text-sm font-semibold truncate md:text-lg">
+                <div className="p-4 bg-color-secondary rounded-b-xl">
+                  <h3 className="text-sm font-semibold text-center truncate md:text-lg">
                     {anime.title}
                   </h3>
-                  {checkGenre ? (
-                    <div className="text-sm md:text-xl">
-                      <p className="mt-2">Genre : </p>
-                      <div className="flex gap-1">
-                        <div>
-                          <p>{parseData(anime.genres)}</p>
-                        </div>
-                      </div>
-                    </div>
-                  ) : (
-                    <div></div>
-                  )}
                 </div>
               </Link>
             );

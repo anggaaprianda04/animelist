@@ -9,7 +9,7 @@ import {
 } from "./service/api-anime";
 
 export default async function Page() {
-  const animeTop = await getAnimeResponse("top/anime", "limit=8");
+  const animeTop = await getAnimeResponse("top/anime", "limit=12");
   const getManga = await getAnimeResponse("manga", "limit=6");
 
   let animeRecommended = await getNestedAnimeResponse(
@@ -19,19 +19,22 @@ export default async function Page() {
   animeRecommended = reproduce(animeRecommended, 16);
 
   return (
-    <div className="px-10">
-      <section className="mt-4 bg-color-secondary">
-        <Header title="Anime Recommendation" />
-        <AnimeRecomended api={animeRecommended} />
-      </section>
-      <section className="mt-4 bg-color-secondary">
-        <Header title="Anime Popular" link="/popular" />
-        <AnimeList api={animeTop} />
-      </section>
-      <section className="mt-4 mb-4 bg-color-secondary">
-        <Header title="Manga" link="/manga" />
-        <MangaList api={getManga} />
-      </section>
-    </div>
+    <>
+      <div className="absolute w-full min-h-screen -mt-4 rounded-br-2xl bg-gradient-to-b -z-0 from-color-primary"></div>
+      <div className="relative px-6">
+        <section className="mt-4">
+          <Header title="Anime Recommendation" />
+          <AnimeRecomended api={animeRecommended} />
+        </section>
+        <section className="mt-4 ">
+          <Header title="Anime Popular" link="/popular" />
+          <AnimeList api={animeTop} />
+        </section>
+        <section className="mt-4 mb-4 ">
+          <Header title="Manga" link="/manga" />
+          <MangaList api={getManga} />
+        </section>
+      </div>
+    </>
   );
 }

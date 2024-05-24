@@ -37,7 +37,7 @@ const AnimeRecomended = ({ api }) => {
               slidesPerView: 3,
             },
             1024: {
-              slidesPerView: 4,
+              slidesPerView: 5,
             },
           }}
           style={{
@@ -50,6 +50,8 @@ const AnimeRecomended = ({ api }) => {
             "--swiper-pagination-bullet-padding": "12px",
           }}>
           {api.data?.map((detailAnime, index) => {
+            if (detailAnime.mal_id == 57501 || detailAnime.mal_id == 57662)
+              return;
             return (
               <SwiperSlide key={index}>
                 <Link href={`/anime/${detailAnime.mal_id}`}>

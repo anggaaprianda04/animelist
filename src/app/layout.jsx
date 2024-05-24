@@ -13,7 +13,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${gabarito.className} bg-color-secondary relative`}>
+      <body className={`${gabarito.className} bg-color-dark relative`}>
         <Navbar />
         {children}
         <Footer />
