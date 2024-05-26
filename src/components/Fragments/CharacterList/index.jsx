@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { IoIosStar } from "react-icons/io";
 
-const CardCharacter = ({ character }) => {
+const CharacterList = ({ character }) => {
   return (
     <div className="p-3 transition-colors rounded-md hover:shadow-color-accent bg-color-white hover:bg-color-dark hover:duration-75 hover:shadow-2xl hover:text-color-white">
       <div className="flex justify-between gap-2">
@@ -30,4 +30,4 @@ const CardCharacter = ({ character }) => {
   );
 };
 
-export default CardCharacter;
+export default CharacterList;

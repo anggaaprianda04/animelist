@@ -1,5 +1,6 @@
 export const parseData = (data) => {
-    const result = data.map((result) => {
+    const checkData = data == null ? [] : data
+    const result = checkData.map((result) => {
         return result.name;
     })
     return result.join(", ");

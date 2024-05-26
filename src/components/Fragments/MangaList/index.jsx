@@ -4,7 +4,7 @@ import { parseData } from "@/constant";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
-import CardSkeleton from "../Utilities/CardSkeleton";
+import CardSkeleton from "../../Elements/CardSkeleton";
 
 const MangaList = ({ api }) => {
   const [loading, setLoading] = useState(false);
@@ -39,14 +39,14 @@ const MangaList = ({ api }) => {
                     <div className="flex flex-col gap-2 rounded-md bg-color-secondary">
                       <p className="line-clamp-1">Title : {manga.title}</p>
                       <p className="line-clamp-1">
-                        Published : {manga.published.string}
+                        Published : {manga.published?.string}
                       </p>
                       <p>Chapter : {manga.chapters ?? "-"}</p>
                       <p className="line-clamp-1">
-                        Genre : {parseData(manga.genres)}
+                        Genre : {parseData(manga.genres) ?? "-"}
                       </p>
                       <p className="line-clamp-1">
-                        Author : {parseData(manga.authors)}
+                        Author : {parseData(manga.authors) ?? "-"}
                       </p>
                     </div>
                     <div className="flex gap-3 mt-2">

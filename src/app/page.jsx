@@ -1,7 +1,7 @@
-import AnimeList from "@/components/AnimeList";
-import Header from "@/components/AnimeList/Header";
-import AnimeRecomended from "@/components/AnimeRecomended";
-import MangaList from "@/components/MangaList";
+import AnimeList from "@/components/Fragments/AnimeList";
+import Header from "@/components/Fragments/AnimeList/Header";
+import AnimeRecomended from "@/components/Fragments/AnimeRecomended";
+import MangaList from "@/components/Fragments/MangaList";
 import {
   getNestedAnimeResponse,
   getAnimeResponse,

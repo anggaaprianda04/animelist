@@ -1,13 +1,13 @@
 "use client";
 
-import AnimeList from "@/components/AnimeList";
-import HeaderMenu from "@/components/Utilities/HeaderMenu";
-import InputSearch from "@/components/Utilities/InputSearch";
-import Pagination from "@/components/Utilities/Pagination";
 import React, { useState, useEffect, useRef } from "react";
 import { getAnimeResponse } from "../service/api-anime";
 import useDebounce from "@/hooks/useDebounce";
-import CardSkeleton from "@/components/Utilities/CardSkeleton";
+import AnimeList from "@/components/Fragments/AnimeList";
+import HeaderMenu from "@/components/Elements/HeaderMenu";
+import CardSkeleton from "@/components/Elements/CardSkeleton";
+import Pagination from "@/components/Elements/Pagination";
+import Search from "@/components/Fragments/Search";
 
 const Page = () => {
   const searchRef = useRef("");
@@ -22,9 +22,9 @@ const Page = () => {
     await getAnimeResponse("top/anime", `page=${page}`)
       .then((val) => {
         setTopAnime(val);
-        setLoading(false);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
   };
 
   const handleChange = () => {
@@ -33,14 +33,14 @@ const Page = () => {
   };
 
   const handleSearchData = async () => {
-    if (search.trim() == "" || !search) return;
+    // if (search.trim() == "" || !search) return;
     await getAnimeResponse("anime", `q=${search}&page=${page}`)
       .then((val) => {
         console.log("masuk search", val);
         setTopAnime(val);
-        setLoading(false);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error))
+      .finally(() => setLoading(false));
   };
 
   useEffect(() => {
@@ -55,12 +55,7 @@ const Page = () => {
     <>
       <div className="p-2">
         {topAnime.length != 0 && (
-          <div className="flex justify-end mt-4 mr-2">
-            <InputSearch searchRef={searchRef} onChange={handleChange} />
-          </div>
-        )}
-        {search.length > 0 && (
-          <h1 className="text-2xl font-bold text-color-white">{`Hasil pencarian ${search}`}</h1>
+          <Search title="anime" searchRef={searchRef} onChange={handleChange} />
         )}
         {loading ? (
           <>
@@ -70,7 +65,11 @@ const Page = () => {
           </>
         ) : (
           <>
-            <HeaderMenu title={`Anime Popular #${page}`} />
+            {search.length > 0 ? (
+              <HeaderMenu title={`Result anime ${search}`} />
+            ) : (
+              <HeaderMenu title={`Anime Popular #${page}`} />
+            )}
             <AnimeList api={topAnime} />
             {!search.length > 0 && (
               <Pagination

@@ -1,13 +1,13 @@
 import "../styles/globals.css";
 import { Gabarito } from "next/font/google";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Navbar from "@/components/Fragments/Navbar";
+import Footer from "@/components/Fragments/Footer";
 
 const gabarito = Gabarito({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Anime",
-  description: "List anime Indonesia",
+  description: "List anime Indonesian",
 };
 
 export default function RootLayout({ children }) {

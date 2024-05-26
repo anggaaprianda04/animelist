@@ -9,7 +9,7 @@ import "swiper/css/autoplay";
 import "swiper/css/pagination";
 import CardRecomended from "./CardRecomended";
 import Link from "next/link";
-import CardSkeleton from "../Utilities/CardSkeleton";
+import CardSkeleton from "../../Elements/CardSkeleton";
 
 const AnimeRecomended = ({ api }) => {
   const [loading, setLoading] = useState(false);

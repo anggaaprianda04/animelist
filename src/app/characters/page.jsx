@@ -1,57 +1,95 @@
 "use client";
 
-import CardCharacter from "@/components/Utilities/CardCharacter";
-import HeaderMenu from "@/components/Utilities/HeaderMenu";
-import Pagination from "@/components/Utilities/Pagination";
-import React, { useState, useEffect } from "react";
+import CardSkeleton from "@/components/Elements/CardSkeleton";
+import HeaderMenu from "@/components/Elements/HeaderMenu";
+import Pagination from "@/components/Elements/Pagination";
+import CharacterList from "@/components/Fragments/CharacterList";
+import Search from "@/components/Fragments/Search";
+import useDebounce from "@/hooks/useDebounce";
+import React, { useState, useEffect, useRef } from "react";
 
-import Loading from "../loading";
 import { getAnimeResponse } from "../service/api-anime";
 
 const Page = () => {
+  const searchRef = useRef("");
+  const [search, setSearch] = useState("");
   const [listCharacters, setListCharacters] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
+  const debounceSearch = useDebounce(search, 3000);
 
-  const fetchDataCharacters = async () => {
+  const fetchData = async () => {
     setLoading(true);
     await getAnimeResponse("characters", `page=${page}`)
       .then((res) => {
         setListCharacters(res);
-        setLoading(false);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
+  };
+
+  const handleChange = () => {
+    setSearch(searchRef.current?.value);
+    setLoading(true);
+  };
+
+  const handleSearchData = async () => {
+    // if (search.trim() == "" || !search) return;
+    await getAnimeResponse("characters", `q=${search}&page=${page}`)
+      .then((val) => {
+        setListCharacters(val);
+      })
+      .catch((error) => console.log(error))
+      .finally(() => setLoading(false));
   };
 
   useEffect(() => {
-    fetchDataCharacters();
-  }, [page]);
+    handleSearchData();
+  }, [debounceSearch, page]);
 
-  // console.log("data", listCharacters);
+  useEffect(() => {
+    fetchData();
+  }, [page]);
 
   return (
     <>
-      {loading ? (
-        <Loading />
-      ) : (
-        <>
-          <HeaderMenu title={`List Characters #${page}`} />
-          <div className="grid grid-cols-2 gap-4 px-4 mb-4 md:grid-cols-3 lg:grid-cols-5">
-            {listCharacters.data?.map((character) => {
-              return (
-                <CardCharacter key={character.mal_id} character={character} />
-              );
-            })}
-          </div>
-          <Pagination
-            page={page}
-            lastPage={listCharacters.pagination?.last_visible_page}
-            currentPage={listCharacters.pagination?.current_page}
-            setPage={setPage}
+      <div className="px-4">
+        {listCharacters.length != 0 && (
+          <Search
+            title="character"
+            searchRef={searchRef}
+            handleChange={handleChange}
           />
-          <div className="mt-5"></div>
-        </>
-      )}
+        )}
+        {loading ? (
+          <div className="mt-4">
+            <CardSkeleton setGridCol="grid-cols-5" />
+          </div>
+        ) : (
+          <>
+            {search.length > 0 ? (
+              <HeaderMenu title={`Result characters ${search}`} />
+            ) : (
+              <HeaderMenu title={`List Characters #${page}`} />
+            )}
+            <div className="grid grid-cols-2 gap-4 px-4 mb-4 md:grid-cols-3 lg:grid-cols-5">
+              {listCharacters.data?.map((character) => {
+                return (
+                  <CharacterList key={character.mal_id} character={character} />
+                );
+              })}
+            </div>
+            {search.length == 0 && (
+              <Pagination
+                page={page}
+                lastPage={listCharacters.pagination?.last_visible_page}
+                currentPage={listCharacters.pagination?.current_page}
+                setPage={setPage}
+              />
+            )}
+          </>
+        )}
+      </div>
     </>
   );
 };

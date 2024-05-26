@@ -1,15 +1,15 @@
 import React from "react";
 
-const CardSkeleton = () => {
+const CardSkeleton = ({ setGridCol = "grid-cols-6", setHeight = "h-80" }) => {
   const listNumber = [1, 2, 3, 4, 5, 6];
   return (
     <>
-      <div className="grid grid-cols-6 gap-4">
+      <div className={`grid min-h-screen ${setGridCol} gap-4`}>
         {listNumber.map((data, index) => {
           return (
             <div
               key={index}
-              className="flex items-center justify-center w-64 rounded-lg h-80 bg-color-secondary animate-pulse dark:bg-color-secondary">
+              className={`flex items-center w-full justify-center rounded-lg ${setHeight} bg-color-secondary animate-pulse dark:bg-color-secondary`}>
               <div role="status">
                 {/* <svg
                   aria-hidden="true"

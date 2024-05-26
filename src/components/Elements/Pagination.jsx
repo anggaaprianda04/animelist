@@ -31,7 +31,7 @@ const Pagination = ({ lastPage, page, setPage, currentPage }) => {
   // console.log("ini", currentPage);
 
   return (
-    <div className="flex items-center justify-center gap-4 text-2xl text-color-white">
+    <div className="flex items-center justify-center gap-4 mt-10 text-2xl text-color-white">
       {page <= 1 ? null : <Button title={"First"} onClick={handleFirstPage} />}
       {page <= 1 ? null : <Button title={"Prev"} onClick={handlePrevPage} />}
       <p>

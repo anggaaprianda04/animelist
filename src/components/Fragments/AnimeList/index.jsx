@@ -4,7 +4,7 @@ import { imageLoader, parseData } from "@/constant";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import CardSkeleton from "../Utilities/CardSkeleton";
+import CardSkeleton from "../../Elements/CardSkeleton";
 
 const AnimeList = ({ api }) => {
   const [loading, setLoading] = useState(false);
