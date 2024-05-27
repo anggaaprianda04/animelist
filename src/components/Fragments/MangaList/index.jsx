@@ -1,6 +1,6 @@
 "use client";
 
-import { parseData } from "@/constant";
+import { parseData } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";

@@ -1,6 +1,6 @@
 "use client";
 
-import { imageLoader, parseData } from "@/constant";
+import { imageLoader, parseData } from "@/utils";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";

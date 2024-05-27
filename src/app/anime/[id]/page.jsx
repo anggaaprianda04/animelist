@@ -1,7 +1,7 @@
 import { getAnimeResponse } from "@/app/service/api-anime";
 import CardInformation from "@/components/Elements/CardInformation";
 import Video from "@/components/Elements/Video";
-import { parseData } from "@/constant";
+import { parseData } from "@/utils";
 import Image from "next/image";
 
 const Page = async ({ params: { id } }) => {
