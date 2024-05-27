@@ -55,7 +55,11 @@ const Page = () => {
     <>
       <div className="p-2">
         {topAnime.length != 0 && (
-          <Search title="anime" searchRef={searchRef} onChange={handleChange} />
+          <Search
+            title="anime"
+            searchRef={searchRef}
+            handleChange={handleChange}
+          />
         )}
         {loading ? (
           <>
@@ -70,7 +74,9 @@ const Page = () => {
             ) : (
               <HeaderMenu title={`Anime Popular #${page}`} />
             )}
-            <AnimeList api={topAnime} />
+            <div className="px-2">
+              <AnimeList api={topAnime} />
+            </div>
             {!search.length > 0 && (
               <Pagination
                 setPage={setPage}

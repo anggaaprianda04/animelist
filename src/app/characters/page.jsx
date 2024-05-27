@@ -53,7 +53,7 @@ const Page = () => {
 
   return (
     <>
-      <div className="px-4">
+      <div className="p-2">
         {listCharacters.length != 0 && (
           <Search
             title="character"
@@ -72,12 +72,8 @@ const Page = () => {
             ) : (
               <HeaderMenu title={`List Characters #${page}`} />
             )}
-            <div className="grid grid-cols-2 gap-4 px-4 mb-4 md:grid-cols-3 lg:grid-cols-5">
-              {listCharacters.data?.map((character) => {
-                return (
-                  <CharacterList key={character.mal_id} character={character} />
-                );
-              })}
+            <div className="px-2">
+              <CharacterList characters={listCharacters} />
             </div>
             {search.length == 0 && (
               <Pagination
