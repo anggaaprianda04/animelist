@@ -12,6 +12,9 @@ const nextConfig = {
       },
     ]
   },
+  env: {
+    baseUrl: 'https://api.jikan.moe/v4',
+  },
   reactStrictMode: true,
 }
 
