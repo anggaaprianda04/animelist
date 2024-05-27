@@ -50,7 +50,12 @@ const AnimeRecomended = ({ api }) => {
             "--swiper-pagination-bullet-padding": "12px",
           }}>
           {api.data?.map((detailAnime, index) => {
-            if (detailAnime.mal_id == 57501 || detailAnime.mal_id == 57662)
+            if (
+              detailAnime.mal_id == 57501 ||
+              detailAnime.mal_id == 57662 ||
+              detailAnime.mal_id == 39800 ||
+              detailAnime.mal_id == 50710
+            )
               return;
             return (
               <SwiperSlide key={index}>

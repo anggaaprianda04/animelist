@@ -1,6 +1,6 @@
 import { getAnimeResponse } from "@/app/service/api-anime";
-import CardInformation from "@/components/Utilities/CardInformation";
-import Video from "@/components/Utilities/Video";
+import CardInformation from "@/components/Elements/CardInformation";
+import Video from "@/components/Elements/Video";
 import { parseData } from "@/constant";
 import Image from "next/image";
 
@@ -9,7 +9,7 @@ const Page = async ({ params: { id } }) => {
 
   return (
     <div className="p-4 bg-opacity-20 bg-gradient-to-b -z-30 from-color-primary">
-      <div className="grid grid-cols-1 gap-8 mx-auto lg:grid-cols-2 text-color-white">
+      <div className="grid grid-cols-1 gap-8 px-2 lg:grid-cols-2 text-color-white">
         <div className="flex flex-col text-sm md:text-lg">
           <div>
             <div className="mb-4">
@@ -51,11 +51,11 @@ const Page = async ({ params: { id } }) => {
                 quality={100}
                 src={anime.data.images.webp.large_image_url}
                 alt={anime.data.images.webp.large_image_url}
-                className="object-cover rounded-md shadow-lg sm w-60 h-60 md:w-56 md:h-72"
+                className="object-cover rounded-md shadow-lg sm w-60 h-60 sm:w-56 sm:h-72"
               />
             </div>
           </div>
-          <div className="mb-3">
+          <div className="mt-4 mb-3 sm:mt-0">
             <p className="mb-4 text-2xl">Synopsis :</p>
             <p className="text-justify indent-8">{anime.data.synopsis}</p>
           </div>
@@ -81,15 +81,15 @@ const Page = async ({ params: { id } }) => {
           </div>
         </div>
         <div className="flex flex-col">
-          <Video youtubeId={anime.data.trailer.youtube_id} />
-          <div className="mt-32">
+          <Video youtube_id={anime.data.trailer.youtube_id} />
+          <div className="mt-4">
             <h3 className="text-2xl text-color-white">Producers :</h3>
-            <div className="flex overflow-y-auto">
+            <div className="flex flex-col overflow-y-auto">
               {anime.data?.producers.map((producer) => {
                 return (
                   <div
                     key={producer.mal_id}
-                    className="px-2 py-1 mt-2 mr-2 font-semibold border-2 rounded-lg border-color-white text-color-white">
+                    className="mt-2 mr-2 font-semibold text-color-white">
                     <p>{producer.name}</p>
                   </div>
                 );

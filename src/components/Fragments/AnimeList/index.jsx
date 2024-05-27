@@ -23,14 +23,14 @@ const AnimeList = ({ api }) => {
   return (
     <>
       {loading ? (
-        <div className="grid grid-cols-2 gap-4 lg:grid-cols-6 md:grid-cols-3">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4 xl:grid-cols-6 sm:grid-cols-3">
           {animes.data?.map((anime) => {
             const checkTotalEpisode = anime.episodes;
             return (
               <Link
                 href={`/anime/${anime.mal_id}`}
                 key={anime.mal_id}
-                className="w-64 shadow-2xl cursor-pointer rounded-xl bg-color-dark text-color-white hover:shadow-color-secondary hover:transition-all hover:bg-color-secondary">
+                className="w-full shadow-2xl cursor-pointer rounded-xl bg-color-dark text-color-white hover:shadow-color-secondary hover:transition-all hover:bg-color-secondary">
                 <div className="relative">
                   <Image
                     loader={!loading ? imageLoader : null}
@@ -44,7 +44,7 @@ const AnimeList = ({ api }) => {
                     alt="image"
                   />
                   {checkTotalEpisode ? (
-                    <div className="absolute left-0 right-0 justify-between hidden w-full px-3 py-1 mt-2 sm:flex text-color-white bg-color-primary top-56">
+                    <div className="absolute left-0 right-0 justify-between hidden w-full px-3 py-1 mt-2 lg:flex text-color-white bg-color-primary top-56">
                       <p className="font-semibold text-color-white">
                         Total Episode : {anime.episodes}
                       </p>
