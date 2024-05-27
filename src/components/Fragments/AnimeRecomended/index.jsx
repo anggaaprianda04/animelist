@@ -12,18 +12,22 @@ import Link from "next/link";
 import CardSkeleton from "../../Elements/CardSkeleton";
 
 const AnimeRecomended = ({ api }) => {
+  const [animeRecom, setAnimeRecom] = useState({});
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
     return () => {
-      api, setLoading(false);
+      setAnimeRecom(api);
+      setLoading(false);
     };
-  }, []);
+  }, [api]);
 
   return (
     <>
-      {loading ? (
+      {!loading ? (
+        <CardSkeleton />
+      ) : (
         <Swiper
           modules={[Pagination, Autoplay]}
           spaceBetween={20}
@@ -49,12 +53,13 @@ const AnimeRecomended = ({ api }) => {
             "--swiper-pagination-bullet-horizontal-gap": "2px",
             "--swiper-pagination-bullet-padding": "12px",
           }}>
-          {api.data?.map((detailAnime, index) => {
+          {animeRecom.data?.map((detailAnime, index) => {
             if (
               detailAnime.mal_id == 57501 ||
               detailAnime.mal_id == 57662 ||
               detailAnime.mal_id == 39800 ||
-              detailAnime.mal_id == 50710
+              detailAnime.mal_id == 50710 ||
+              detailAnime.mal_id == 37281
             )
               return;
             return (
@@ -66,8 +71,6 @@ const AnimeRecomended = ({ api }) => {
             );
           })}
         </Swiper>
-      ) : (
-        <CardSkeleton />
       )}
     </>
   );

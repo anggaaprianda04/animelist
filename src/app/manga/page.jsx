@@ -17,37 +17,35 @@ const Page = () => {
   const [listManga, setListManga] = useState([]);
   const debounceSearch = useDebounce(search, 3000);
 
-  const fetchData = async () => {
-    setLoading(true);
-    await getAnimeResponse("manga", `page=${page}`)
-      .then((res) => {
-        setListManga(res);
-        setLoading(false);
-      })
-      .catch((error) => console.log(error));
-  };
-
   const handleChange = () => {
     setSearch(searchRef.current?.value);
     setLoading(true);
   };
 
-  const handleSearchData = async () => {
-    // if (search.trim() == "" || !search) return;
-    await getAnimeResponse("manga", `q=${search}&page=${page}`)
-      .then((val) => {
-        console.log("masuk search", val);
-        setListManga(val);
-      })
-      .catch((error) => console.log(error))
-      .finally(() => setLoading(false));
-  };
-
   useEffect(() => {
+    const handleSearchData = async () => {
+      // if (search.trim() == "" || !search) return;
+      await getAnimeResponse("manga", `q=${search}&page=${page}`)
+        .then((val) => {
+          console.log("masuk search", val);
+          setListManga(val);
+        })
+        .catch((error) => console.log(error))
+        .finally(() => setLoading(false));
+    };
     handleSearchData();
-  }, [debounceSearch, page]);
+  }, [debounceSearch, page, search]);
 
   useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      await getAnimeResponse("manga", `page=${page}`)
+        .then((res) => {
+          setListManga(res);
+          setLoading(false);
+        })
+        .catch((error) => console.log(error));
+    };
     fetchData();
   }, [page]);
 

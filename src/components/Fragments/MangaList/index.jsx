@@ -1,27 +1,30 @@
 "use client";
 
+import CardSkeleton from "@/components/Elements/CardSkeleton";
 import { parseData } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState, useEffect } from "react";
-import CardSkeleton from "../../Elements/CardSkeleton";
+import React, { useEffect, useState } from "react";
 
 const MangaList = ({ api }) => {
+  const [mangas, setManga] = useState({});
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
     return () => {
-      api;
+      setManga(api);
       setLoading(false);
     };
-  }, []);
+  }, [api]);
 
   return (
     <>
-      {loading ? (
+      {!loading ? (
+        <CardSkeleton setGridCol="grid-cols-3" />
+      ) : (
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {api.data?.map((manga, index) => {
+          {mangas.data?.map((manga, index) => {
             return (
               <Link key={index} href={manga.url} target={"_blank"}>
                 <div className="flex gap-2 p-4 font-medium rounded-md cursor-pointer hover:duration-75 hover:shadow-2xl hover:shadow-color-secondary text-color-white h-72 bg-color-secondary">
@@ -84,8 +87,6 @@ const MangaList = ({ api }) => {
             );
           })}
         </div>
-      ) : (
-        <CardSkeleton />
       )}
     </>
   );

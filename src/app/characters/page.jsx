@@ -18,36 +18,34 @@ const Page = () => {
   const [page, setPage] = useState(1);
   const debounceSearch = useDebounce(search, 3000);
 
-  const fetchData = async () => {
-    setLoading(true);
-    await getAnimeResponse("characters", `page=${page}`)
-      .then((res) => {
-        setListCharacters(res);
-      })
-      .catch((err) => console.log(err))
-      .finally(() => setLoading(false));
-  };
-
   const handleChange = () => {
     setSearch(searchRef.current?.value);
     setLoading(true);
   };
 
-  const handleSearchData = async () => {
-    // if (search.trim() == "" || !search) return;
-    await getAnimeResponse("characters", `q=${search}&page=${page}`)
-      .then((val) => {
-        setListCharacters(val);
-      })
-      .catch((error) => console.log(error))
-      .finally(() => setLoading(false));
-  };
-
   useEffect(() => {
+    const handleSearchData = async () => {
+      // if (search.trim() == "" || !search) return;
+      await getAnimeResponse("characters", `q=${search}&page=${page}`)
+        .then((val) => {
+          setListCharacters(val);
+        })
+        .catch((error) => console.log(error))
+        .finally(() => setLoading(false));
+    };
     handleSearchData();
-  }, [debounceSearch, page]);
+  }, [debounceSearch, page, search]);
 
   useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      await getAnimeResponse("characters", `page=${page}`)
+        .then((res) => {
+          setListCharacters(res);
+        })
+        .catch((err) => console.log(err))
+        .finally(() => setLoading(false));
+    };
     fetchData();
   }, [page]);
 

@@ -12,17 +12,16 @@ const Page = () => {
   const [magazines, setMagazines] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const fecthData = async () => {
-    setLoading(true);
-    await getAnimeResponse("magazines", `page=${page}`)
-      .then((res) => {
-        setMagazines(res);
-      })
-      .catch((error) => console.log(error))
-      .finally(() => setLoading(false));
-  };
-
   useEffect(() => {
+    const fecthData = async () => {
+      setLoading(true);
+      await getAnimeResponse("magazines", `page=${page}`)
+        .then((res) => {
+          setMagazines(res);
+        })
+        .catch((error) => console.log(error))
+        .finally(() => setLoading(false));
+    };
     fecthData();
   }, [page]);
 

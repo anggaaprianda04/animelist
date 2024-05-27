@@ -1,30 +1,29 @@
 "use client";
 
-import { imageLoader, parseData } from "@/utils";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import CardSkeleton from "../../Elements/CardSkeleton";
 
 const AnimeList = ({ api }) => {
+  const [animePopular, setAnimePopular] = useState({});
   const [loading, setLoading] = useState(false);
-  const [animes, setAnimes] = useState({});
 
   useEffect(() => {
     setLoading(true);
     return () => {
-      setAnimes(api);
+      setAnimePopular(api);
       setLoading(false);
     };
-  }, []);
-
-  // console.log("api", api);
+  }, [api]);
 
   return (
     <>
-      {loading ? (
+      {!loading ? (
+        <CardSkeleton />
+      ) : (
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4 xl:grid-cols-6 sm:grid-cols-3">
-          {animes.data?.map((anime) => {
+          {animePopular.data?.map((anime) => {
             const checkTotalEpisode = anime.episodes;
             return (
               <Link
@@ -33,7 +32,6 @@ const AnimeList = ({ api }) => {
                 className="w-full shadow-2xl cursor-pointer rounded-xl bg-color-dark text-color-white hover:shadow-color-secondary hover:transition-all hover:bg-color-secondary">
                 <div className="relative">
                   <Image
-                    loader={!loading ? imageLoader : null}
                     width={350}
                     height={350}
                     priority={true}
@@ -80,8 +78,6 @@ const AnimeList = ({ api }) => {
             );
           })}
         </div>
-      ) : (
-        <CardSkeleton />
       )}
     </>
   );

@@ -17,37 +17,35 @@ const Page = () => {
   const [loading, setLoading] = useState(false);
   const debounceSearch = useDebounce(search, 3000);
 
-  const fetchData = async () => {
-    setLoading(true);
-    await getAnimeResponse("top/anime", `page=${page}`)
-      .then((val) => {
-        setTopAnime(val);
-      })
-      .catch((err) => console.log(err))
-      .finally(() => setLoading(false));
-  };
-
   const handleChange = () => {
     setSearch(searchRef.current?.value);
     setLoading(true);
   };
 
-  const handleSearchData = async () => {
-    // if (search.trim() == "" || !search) return;
-    await getAnimeResponse("anime", `q=${search}&page=${page}`)
-      .then((val) => {
-        console.log("masuk search", val);
-        setTopAnime(val);
-      })
-      .catch((error) => console.log(error))
-      .finally(() => setLoading(false));
-  };
-
   useEffect(() => {
+    const handleSearchData = async () => {
+      // if (search.trim() == "" || !search) return;
+      await getAnimeResponse("anime", `q=${search}&page=${page}`)
+        .then((val) => {
+          console.log("masuk search", val);
+          setTopAnime(val);
+        })
+        .catch((error) => console.log(error))
+        .finally(() => setLoading(false));
+    };
     handleSearchData();
-  }, [debounceSearch, page]);
+  }, [debounceSearch, page, search]);
 
   useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      await getAnimeResponse("top/anime", `page=${page}`)
+        .then((val) => {
+          setTopAnime(val);
+        })
+        .catch((err) => console.log(err))
+        .finally(() => setLoading(false));
+    };
     fetchData();
   }, [page]);
 

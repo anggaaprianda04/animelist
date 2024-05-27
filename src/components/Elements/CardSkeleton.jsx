@@ -4,7 +4,7 @@ const CardSkeleton = ({ setGridCol = "grid-cols-6", setHeight = "h-80" }) => {
   const listNumber = [1, 2, 3, 4, 5, 6];
   return (
     <>
-      <div className={`grid min-h-screen ${setGridCol} gap-4`}>
+      <div className={`grid ${setGridCol} gap-4`}>
         {listNumber.map((data, index) => {
           return (
             <div
