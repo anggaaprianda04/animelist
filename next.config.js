@@ -3,10 +3,10 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: "/api.jikan.moe/v4",
+        source: "https://api.jikan.moe/v4",
         headers: [
           { key: "Content-Type", value: "application/json" },
-          { key: "Cache-Control", value: "no-cache, no-store, max-age=120, must-revalidate" },
+          { key: "Cache-Control", value: 's-maxage=1, stale-while-revalidate=59' },
           { key: "If-None-Match", value: "x234dff" }
         ]
       },
