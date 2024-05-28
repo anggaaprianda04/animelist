@@ -1,5 +1,5 @@
 export const getAnimeResponse = async (resource, query) => {
-    const response = await fetch(`${process.env.baseUrl}/${resource}?${query}`);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/${resource}?${query}`);
     const anime = await response.json();
     return anime;
 }
@@ -16,6 +16,5 @@ export const reproduce = (data, gap) => {
     const response = {
         data: data?.slice(first, last)
     }
-    console.log('log', response);
     return response;
 }
