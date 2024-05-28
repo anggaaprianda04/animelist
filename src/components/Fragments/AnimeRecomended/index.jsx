@@ -23,6 +23,8 @@ const AnimeRecomended = ({ api }) => {
     };
   }, [api]);
 
+  console.log("api", api);
+
   return (
     <>
       {!loading ? (
@@ -53,7 +55,7 @@ const AnimeRecomended = ({ api }) => {
             "--swiper-pagination-bullet-horizontal-gap": "2px",
             "--swiper-pagination-bullet-padding": "12px",
           }}>
-          {animeRecom.data?.map((detailAnime, index) => {
+          {animeRecom?.data?.map((detailAnime, index) => {
             if (
               detailAnime.mal_id == 57501 ||
               detailAnime.mal_id == 57662 ||
