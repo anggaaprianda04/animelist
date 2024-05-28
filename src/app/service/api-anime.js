@@ -16,6 +16,6 @@ export const reproduce = (data, gap) => {
     const response = {
         data: data?.slice(first, last)
     }
-
+    console.log('log', response);
     return response;
 }
