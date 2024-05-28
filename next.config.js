@@ -3,7 +3,7 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: "/",
+        source: "/anime",
         headers: [
           { key: "Content-Type", value: "application/json" },
           { key: "Cache-Control", value: 's-maxage=1, stale-while-revalidate=59' },
