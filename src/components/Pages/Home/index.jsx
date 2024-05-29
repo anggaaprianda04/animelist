@@ -44,7 +44,7 @@ const Index = () => {
     };
   }, []);
 
-  console.log("ambil", getAnimeTop);
+  console.log("ambil", getAnimeTop.data);
 
   return (
     <>
