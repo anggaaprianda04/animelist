@@ -6,32 +6,33 @@ import HeaderMenu from "@/components/Elements/HeaderMenu";
 import Pagination from "@/components/Elements/Pagination";
 import MagazineList from "@/components/Fragments/MagazineList";
 import CardSkeleton from "@/components/Elements/CardSkeleton";
+import useFetchData from "@/hooks/useFetchData";
 
 const Page = () => {
   const [page, setPage] = useState(1);
-  const [magazines, setMagazines] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [magazines, setMagazines] = useState({});
+  const { data, fetchError, isloading } = useFetchData(
+    "magazines",
+    `page=${page}`
+  );
 
   useEffect(() => {
-    const fecthData = async () => {
-      setLoading(true);
-      await getAnimeResponse("magazines", `page=${page}`)
-        .then((res) => {
-          setMagazines(res);
-        })
-        .catch((error) => console.log(error))
-        .finally(() => setLoading(false));
-    };
-    fecthData();
-  }, [page]);
+    setMagazines(data);
+  }, [data, page]);
 
   return (
     <div className="px-4">
-      {loading ? (
+      {isloading && (
         <div className="mt-4">
           <CardSkeleton setHeight="h-20" />
         </div>
-      ) : (
+      )}
+      {!isloading && fetchError && (
+        <div>
+          <h1>{fetchError}</h1>
+        </div>
+      )}
+      {!isloading && !fetchError && (
         <>
           <HeaderMenu title={`List Magazines #${page}`} />
           <MagazineList api={magazines} />

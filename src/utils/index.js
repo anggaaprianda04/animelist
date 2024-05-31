@@ -6,6 +6,11 @@ export const parseData = (data) => {
     return result.join(", ");
 }
 
+export const getNestedAnime = (resource, objectProperty) => {
+    const result = resource;
+    return result.data?.flatMap((item) => item[objectProperty]);
+}
+
 export const reproduce = (data, gap) => {
     const first = ~~(Math.random() * (data?.length - gap) + 1);
     const last = first + gap;
@@ -15,7 +20,3 @@ export const reproduce = (data, gap) => {
     }
     return response;
 }
-
-export const imageLoader = () => {
-    return 'https://placeholder.pics/svg/300/FFFFFF/ddd';
-} 

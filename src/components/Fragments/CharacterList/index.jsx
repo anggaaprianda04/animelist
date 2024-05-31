@@ -45,8 +45,9 @@ const CharacterList = ({ characters }) => {
                       </div>
                     </div>
                     <Image
-                      className="object-cover w-2/5 rounded-md h-44"
+                      className="object-cover transition-opacity opacity-0 duration-[1s] w-2/5 rounded-md h-44"
                       width={100}
+                      onLoadingComplete={(e) => e.classList.remove("opacity-0")}
                       height={100}
                       src={character?.images?.webp.image_url}
                       alt={character?.images?.webp.image_url}

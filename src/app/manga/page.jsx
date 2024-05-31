@@ -1,11 +1,13 @@
 "use client";
 
 import CardSkeleton from "@/components/Elements/CardSkeleton";
+import EmptyData from "@/components/Elements/EmptyData";
 import HeaderMenu from "@/components/Elements/HeaderMenu";
 import Pagination from "@/components/Elements/Pagination";
 import MangaList from "@/components/Fragments/MangaList";
 import Search from "@/components/Fragments/Search";
 import useDebounce from "@/hooks/useDebounce";
+import useFetchData from "@/hooks/useFetchData";
 import React, { useEffect, useRef, useState } from "react";
 import { getAnimeResponse } from "../service/api-anime";
 
@@ -14,40 +16,32 @@ const Page = () => {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
-  const [listManga, setListManga] = useState([]);
+  const [listManga, setListManga] = useState({});
   const debounceSearch = useDebounce(search, 3000);
+  const { data, fetchError, isloading } = useFetchData("manga", `page=${page}`);
 
   const handleChange = () => {
     setSearch(searchRef.current?.value);
     setLoading(true);
   };
 
-  useEffect(() => {
-    const handleSearchData = async () => {
-      // if (search.trim() == "" || !search) return;
-      await getAnimeResponse("manga", `q=${search}&page=${page}`)
-        .then((val) => {
-          console.log("masuk search", val);
-          setListManga(val);
-        })
-        .catch((error) => console.log(error))
-        .finally(() => setLoading(false));
-    };
-    handleSearchData();
-  }, [debounceSearch, page, search]);
+  const handleSearchData = async () => {
+    await getAnimeResponse("manga", `q=${search}&page=${page}`)
+      .then((val) => {
+        console.log("masuk search", val);
+        setListManga(val);
+      })
+      .catch((error) => console.log(error))
+      .finally(() => setLoading(false));
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      await getAnimeResponse("manga", `page=${page}`)
-        .then((res) => {
-          setListManga(res);
-          setLoading(false);
-        })
-        .catch((error) => console.log(error));
-    };
-    fetchData();
-  }, [page]);
+    handleSearchData();
+  }, [debounceSearch, page]);
+
+  useEffect(() => {
+    setListManga(data);
+  }, [data, page]);
 
   return (
     <>
@@ -59,7 +53,7 @@ const Page = () => {
             handleChange={handleChange}
           />
         )}
-        {loading ? (
+        {loading || isloading ? (
           <div className="mt-4">
             <CardSkeleton setGridCol="grid-cols-3" />
           </div>
@@ -70,7 +64,13 @@ const Page = () => {
             ) : (
               <HeaderMenu title={`List manga #${page}`} />
             )}
-            <MangaList api={listManga} />
+            {!isloading && fetchError && (
+              <div>
+                <h1>{fetchError}</h1>
+              </div>
+            )}
+            {listManga.data?.length == 0 && <EmptyData label="manga" />}
+            {listManga.data?.length != 0 && <MangaList getMangas={listManga} />}
             {search.length == 0 && (
               <Pagination
                 currentPage={listManga.pagination?.current_page}

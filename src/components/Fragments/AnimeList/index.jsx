@@ -4,11 +4,11 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const AnimeList = ({ animePopular }) => {
+const AnimeList = ({ animes }) => {
   return (
     <>
       <div className="grid grid-cols-2 gap-4 md:grid-cols-4 xl:grid-cols-6 sm:grid-cols-3">
-        {animePopular?.data?.map((anime) => {
+        {animes?.data?.map((anime) => {
           const checkTotalEpisode = anime.episodes;
           return (
             <Link
@@ -21,13 +21,14 @@ const AnimeList = ({ animePopular }) => {
                   height={350}
                   priority={true}
                   quality={100}
+                  onLoadingComplete={(e) => e.classList.remove("opacity-0")}
                   style={{ objectFit: "cover" }}
-                  className="w-full h-64 rounded-t-lg"
+                  className="w-full transition-opacity opacity-0 duration-[1s] h-64 rounded-t-lg"
                   src={anime.images.webp.large_image_url}
                   alt="image"
                 />
                 {checkTotalEpisode ? (
-                  <div className="absolute left-0 right-0 justify-between hidden w-full px-3 py-1 mt-2 lg:flex text-color-white bg-color-primary top-56">
+                  <div className="absolute left-0 right-0 items-center justify-between hidden w-full px-3 py-1 mt-2 text-sm lg:flex text-color-white bg-color-primary top-56">
                     <p className="font-semibold text-color-white">
                       Total Episode : {anime.episodes}
                     </p>

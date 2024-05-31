@@ -6,17 +6,17 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
-const MangaList = ({ api }) => {
+const MangaList = ({ getMangas }) => {
   const [mangas, setManga] = useState({});
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
     return () => {
-      setManga(api);
+      setManga(getMangas);
       setLoading(false);
     };
-  }, [api]);
+  }, [getMangas]);
 
   return (
     <>
@@ -29,7 +29,8 @@ const MangaList = ({ api }) => {
               <Link key={index} href={manga.url} target={"_blank"}>
                 <div className="flex gap-2 p-4 font-medium rounded-md cursor-pointer hover:duration-75 hover:shadow-2xl hover:shadow-color-secondary text-color-white h-72 bg-color-secondary">
                   <Image
-                    className="w-2/6"
+                    className="w-2/6 transition-opacity opacity-0 duration-[1s]"
+                    onLoadingComplete={(e) => e.classList.remove("opacity-0")}
                     width={100}
                     height={100}
                     priority={true}
