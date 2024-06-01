@@ -14,7 +14,7 @@ const AnimeList = ({ animes }) => {
             <Link
               href={`/anime/${anime.mal_id}`}
               key={anime.mal_id}
-              className="w-full shadow-2xl cursor-pointer rounded-xl bg-color-dark text-color-white hover:shadow-color-secondary hover:transition-all hover:bg-color-secondary">
+              className="w-full shadow-2xl cursor-pointer rounded-xl bg-color-secondary text-color-white hover:shadow-color-secondary hover:transition-all hover:bg-color-secondary">
               <div className="relative">
                 <Image
                   width={350}
