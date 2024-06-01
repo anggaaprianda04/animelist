@@ -46,7 +46,7 @@ const Page = () => {
     <>
       <div className="p-2">
         {topAnime.length != 0 && (
-          <div className="flex justify-end mt-4 mr-2">
+          <div className="flex justify-start mt-4">
             <Search
               searchRef={searchRef}
               title="anime"
@@ -61,7 +61,7 @@ const Page = () => {
         )}
         {loading || isloading ? (
           <>
-            <div className="min-h-screen my-8">
+            <div className="min-h-screen mx-3 my-8">
               <CardSkeleton />
             </div>
           </>

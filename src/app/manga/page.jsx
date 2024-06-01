@@ -45,13 +45,15 @@ const Page = () => {
 
   return (
     <>
-      <div className="px-4">
+      <div className="p-2">
         {listManga.length != 0 && (
-          <Search
-            title="manga"
-            searchRef={searchRef}
-            handleChange={handleChange}
-          />
+          <div className="flex justify-start mt-4">
+            <Search
+              title="manga"
+              searchRef={searchRef}
+              handleChange={handleChange}
+            />
+          </div>
         )}
         {loading || isloading ? (
           <div className="mt-4">

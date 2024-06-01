@@ -50,11 +50,13 @@ const Page = () => {
     <>
       <div className="p-2">
         {listCharacters.length != 0 && (
-          <Search
-            title="character"
-            searchRef={searchRef}
-            handleChange={handleChange}
-          />
+          <div className="flex justify-start mt-4">
+            <Search
+              title="character"
+              searchRef={searchRef}
+              handleChange={handleChange}
+            />
+          </div>
         )}
         {loading || isloading ? (
           <div className="mt-4">
