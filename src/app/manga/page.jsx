@@ -29,7 +29,7 @@ const Page = () => {
           {!isloading && !fetchError && (
             <>
               <HeaderMenu title={`List manga #${page}`} />
-              <MangaList getMangas={listManga} />
+              <MangaList getManga={listManga} />
               <Pagination
                 setPage={setPage}
                 page={page}
