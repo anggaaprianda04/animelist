@@ -2,6 +2,7 @@
 
 import { getAnimeResponse } from "@/app/service/api-anime";
 import CardSkeleton from "@/components/Elements/CardSkeleton";
+import EmptyData from "@/components/Elements/EmptyData";
 import HeaderMenu from "@/components/Elements/HeaderMenu";
 import Pagination from "@/components/Elements/Pagination";
 import AnimeList from "@/components/Fragments/AnimeList";
@@ -42,18 +43,16 @@ const Index = () => {
 
   return (
     <>
-      <div className="relative flex justify-start sm:justify-end">
-        <div className="absolute right-0 w-full mt-6 sm:right-72 sm:w-0">
-          <Search
-            value={search}
-            handleChange={(e) => handleChange(e)}
-            title="anime"
-          />
-        </div>
+      <div className="flex justify-end mt-2 sm:mt-8">
+        <Search
+          value={search}
+          handleChange={(e) => handleChange(e)}
+          title="anime"
+        />
       </div>
-      <div className="mt-20 sm:mt-14">
+      <div className="mt-4">
         {search.length > 0 && (
-          <h1 className="text-2xl font-semibold text-color-white">{`Result anime ${search}`}</h1>
+          <h1 className="text-2xl font-semibold text-color-white">{`Result anime ${search}...`}</h1>
         )}
         {loading && (
           <div className="mt-4">
@@ -63,7 +62,14 @@ const Index = () => {
         {!loading && (
           <>
             {searchAnime == {} && <HeaderMenu title={`List anime #${page}`} />}
-            <AnimeList animes={searchAnime} />
+            {searchAnime.data?.length == 0 ? (
+              <EmptyData label="anime" />
+            ) : (
+              <div className="mt-4">
+                <AnimeList animes={searchAnime} />
+              </div>
+            )}
+
             {searchAnime.data?.length > 0 && (
               <Pagination
                 setPage={setPage}

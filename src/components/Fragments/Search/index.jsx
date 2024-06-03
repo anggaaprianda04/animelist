@@ -1,11 +1,7 @@
 import Input from "@/components/Elements/Input";
 
 const Search = ({ value, handleChange, title }) => {
-  return (
-    <div className="w-full">
-      <Input title={title} value={value} onChange={handleChange} />
-    </div>
-  );
+  return <Input title={title} value={value} onChange={handleChange} />;
 };
 
 export default Search;
