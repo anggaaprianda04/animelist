@@ -21,29 +21,27 @@ const Page = () => {
   }, [data, page]);
 
   return (
-    <div className="px-4">
-      {isloading && (
-        <div className="mt-4">
-          <CardSkeleton setHeight="h-20" />
-        </div>
-      )}
-      {!isloading && fetchError && (
-        <div>
-          <h1>{fetchError}</h1>
-        </div>
-      )}
-      {!isloading && !fetchError && (
-        <>
-          <HeaderMenu title={`List Magazines #${page}`} />
-          <MagazineList api={magazines} />
-          <Pagination
-            page={page}
-            setPage={setPage}
-            lastPage={magazines.pagination?.last_visible_page}
-            currentPage={magazines.pagination?.current_page}
-          />
-        </>
-      )}
+    <div className="p-4">
+      <div className="px-3">
+        {isloading && <CardSkeleton setHeight="h-20" />}
+        {!isloading && fetchError && (
+          <div>
+            <h1>{fetchError}</h1>
+          </div>
+        )}
+        {!isloading && !fetchError && (
+          <>
+            <HeaderMenu title={`List Magazines #${page}`} />
+            <MagazineList api={magazines} />
+            <Pagination
+              page={page}
+              setPage={setPage}
+              lastPage={magazines.pagination?.last_visible_page}
+              currentPage={magazines.pagination?.current_page}
+            />
+          </>
+        )}
+      </div>
     </div>
   );
 };

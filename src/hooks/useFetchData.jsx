@@ -9,6 +9,7 @@ const useFetchData = (dataUrl, query) => {
 
   const fetchData = async (url, params) => {
     setLoading(true);
+    console.log("masuk");
     await getAnimeResponse(url, params)
       .then((res) => {
         setData(res);
@@ -16,7 +17,10 @@ const useFetchData = (dataUrl, query) => {
       .catch((err) => {
         setFetchError(err);
       })
-      .finally(() => setLoading(false));
+      .finally(() => {
+        setLoading(false);
+        console.log("keluar");
+      });
   };
 
   useEffect(() => {

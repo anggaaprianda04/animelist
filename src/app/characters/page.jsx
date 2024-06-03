@@ -13,34 +13,30 @@ import React, { useState, useEffect, useRef } from "react";
 import { getAnimeResponse } from "../service/api-anime";
 
 const Page = () => {
-  const searchRef = useRef("");
-  const [search, setSearch] = useState("");
   const [listCharacters, setListCharacters] = useState({});
-  const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
-  const debounceSearch = useDebounce(search, 3000);
   const { data, fetchError, isloading } = useFetchData(
     "characters",
     `page=${page}`
   );
 
-  const handleChange = () => {
-    setSearch(searchRef.current?.value);
-    setLoading(true);
-  };
+  // const handleChange = () => {
+  //   setSearch(searchRef.current?.value);
+  //   setLoading(true);
+  // };
 
-  const handleSearchData = async (valRes) => {
-    await getAnimeResponse("characters", `q=${valRes}&page=${page}`)
-      .then((val) => {
-        setListCharacters(val);
-      })
-      .catch((error) => console.log(error))
-      .finally(() => setLoading(false));
-  };
+  // const handleSearchData = async (valRes) => {
+  //   await getAnimeResponse("characters", `q=${valRes}&page=${page}`)
+  //     .then((val) => {
+  //       setListCharacters(val);
+  //     })
+  //     .catch((error) => console.log(error))
+  //     .finally(() => setLoading(false));
+  // };
 
-  useEffect(() => {
-    handleSearchData(search);
-  }, [debounceSearch, page]);
+  // useEffect(() => {
+  //   handleSearchData(search);
+  // }, [debounceSearch, page]);
 
   useEffect(() => {
     setListCharacters(data);
@@ -48,50 +44,27 @@ const Page = () => {
 
   return (
     <>
-      <div className="p-2">
-        {listCharacters.length != 0 && (
-          <div className="flex justify-start mt-4">
-            <Search
-              title="character"
-              searchRef={searchRef}
-              handleChange={handleChange}
-            />
-          </div>
-        )}
-        {loading || isloading ? (
-          <div className="mt-4">
-            <CardSkeleton />
-          </div>
-        ) : (
-          <>
-            {search.length > 0 ? (
-              <HeaderMenu title={`Result characters ${search}`} />
-            ) : (
-              <HeaderMenu title={`List Characters #${page}`} />
-            )}
-            <div className="px-2">
-              {fetchError && (
-                <div>
-                  <h1>{fetchError}</h1>
-                </div>
-              )}
-              {listCharacters.data?.length == 0 && (
-                <EmptyData label="character" />
-              )}
-              {listCharacters.data?.length != 0 && (
-                <CharacterList characters={listCharacters} />
-              )}
+      <div className="p-4">
+        <div className="px-3">
+          {isloading && <CardSkeleton setHeight="h-56" />}
+          {!isloading && fetchError && (
+            <div>
+              <h1>{fetchError}</h1>
             </div>
-            {search.length == 0 && (
+          )}
+          {!isloading && !fetchError && (
+            <>
+              <HeaderMenu title={`List Characters #${page}`} />
+              <CharacterList characters={listCharacters} />
               <Pagination
+                setPage={setPage}
                 page={page}
                 lastPage={listCharacters.pagination?.last_visible_page}
                 currentPage={listCharacters.pagination?.current_page}
-                setPage={setPage}
               />
-            )}
-          </>
-        )}
+            </>
+          )}
+        </div>
       </div>
     </>
   );
