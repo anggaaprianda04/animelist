@@ -1,9 +1,9 @@
 import Input from "@/components/Elements/Input";
 
-const Search = ({ searchRef, handleChange, title }) => {
+const Search = ({ value, handleChange, title }) => {
   return (
-    <div className="w-full ml-2">
-      <Input title={title} searchRef={searchRef} onChange={handleChange} />
+    <div className="w-full">
+      <Input title={title} value={value} onChange={handleChange} />
     </div>
   );
 };
