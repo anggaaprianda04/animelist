@@ -13,7 +13,7 @@ const CardRecomended = ({ anime }) => {
           width={400}
           height={200}
           priority={true}
-          quality={80}
+          quality={60}
           onLoadingComplete={(e) => e.classList.remove("opacity-0")}
           style={{ objectFit: "cover" }}
           alt={anime.images?.webp?.large_image_url}

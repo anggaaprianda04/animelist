@@ -1,9 +1,13 @@
-import "../styles/globals.css";
+import "@/styles/globals.css";
 import { Gabarito } from "next/font/google";
-import Navbar from "@/components/Fragments/Navbar";
-import Footer from "@/components/Fragments/Footer";
+import dynamic from "next/dynamic";
 
-const gabarito = Gabarito({ subsets: ["latin"] });
+const Navbar = dynamic(() => import("@/components/Fragments/Navbar"));
+const Footer = dynamic(() => import("@/components/Fragments/Footer"));
+
+const gabarito = Gabarito({
+  subsets: ["latin"],
+});
 
 export const metadata = {
   title: "Anime",

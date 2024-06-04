@@ -3,7 +3,7 @@ import React from "react";
 
 const Header = ({ title, link }) => {
   return (
-    <div className="flex items-center justify-between my-2 text-color-white hover:text-color-accent hover:transition-all">
+    <div className="flex items-center justify-between my-2 text-color-white">
       <p className="text-2xl font-bold">{title}</p>
       {link == null ? null : (
         <Link

@@ -20,10 +20,10 @@ const AnimeList = ({ animes }) => {
                   width={350}
                   height={350}
                   priority={true}
-                  quality={100}
+                  quality={60}
                   onLoadingComplete={(e) => e.classList.remove("opacity-0")}
                   style={{ objectFit: "cover" }}
-                  className="w-full transition-opacity opacity-0 duration-[1s] h-64 rounded-t-lg"
+                  className="transition-opacity opacity-0 duration-[1s] h-64 rounded-t-lg"
                   src={anime.images.webp.large_image_url}
                   alt="image"
                 />
