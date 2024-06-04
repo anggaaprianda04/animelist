@@ -9,7 +9,7 @@ import AnimeList from "@/components/Fragments/AnimeList";
 import Header from "@/components/Fragments/AnimeList/Header";
 import Search from "@/components/Fragments/Search";
 import useDebounce from "@/hooks/useDebounce";
-import React, { useEffect, useState, ReactDOM } from "react";
+import React, { useEffect, useState } from "react";
 import ListAnime from "./listAnime";
 import ListAnimeRecom from "./listAnimeRecom";
 
