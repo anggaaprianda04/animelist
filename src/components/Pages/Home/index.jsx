@@ -2,16 +2,17 @@
 
 import { getAnimeResponse } from "@/app/service/api-anime";
 import CardSkeleton from "@/components/Elements/CardSkeleton";
-import EmptyData from "@/components/Elements/EmptyData";
-import HeaderMenu from "@/components/Elements/HeaderMenu";
-import Pagination from "@/components/Elements/Pagination";
-import AnimeList from "@/components/Fragments/AnimeList";
-import Header from "@/components/Fragments/AnimeList/Header";
-import Search from "@/components/Fragments/Search";
 import useDebounce from "@/hooks/useDebounce";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import ListAnime from "./listAnime";
 import ListAnimeRecom from "./listAnimeRecom";
+
+const EmptyData = lazy(() => import("@/components/Elements/EmptyData"));
+const HeaderMenu = lazy(() => import("@/components/Elements/HeaderMenu"));
+const Pagination = lazy(() => import("@/components/Elements/Pagination"));
+const AnimeList = lazy(() => import("@/components/Fragments/AnimeList"));
+const Header = lazy(() => import("@/components/Fragments/AnimeList/Header"));
+const Search = lazy(() => import("@/components/Fragments/Search"));
 
 const Index = () => {
   const [search, setSearch] = useState("");
@@ -80,22 +81,16 @@ const Index = () => {
             )}
           </>
         )}
-        {search.trim() == "" && (
+        {search.trim() == "" && !loading && (
           <>
-            {loading ? (
-              <div></div>
-            ) : (
-              <>
-                <section className="mt-4">
-                  <Header title="Anime Recommendation" />
-                  <ListAnimeRecom />
-                </section>
-                <section className="mt-4 ">
-                  <Header title="Anime" link="/animes" />
-                  <ListAnime />
-                </section>
-              </>
-            )}
+            <section className="mt-4">
+              <Header title="Anime Recommendation" />
+              <ListAnimeRecom />
+            </section>
+            <section className="mt-4 ">
+              <Header title="Anime" link="/animes" />
+              <ListAnime />
+            </section>
           </>
         )}
       </div>

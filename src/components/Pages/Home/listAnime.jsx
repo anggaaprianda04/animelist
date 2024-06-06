@@ -1,9 +1,11 @@
 "use client";
 
-import CardSkeleton from "@/components/Elements/CardSkeleton";
-import AnimeList from "@/components/Fragments/AnimeList";
+import React, { useEffect, useState, lazy } from "react";
 import useFetchData from "@/hooks/useFetchData";
-import React, { useEffect, useState } from "react";
+
+const AnimeList = lazy(() => import("@/components/Fragments/AnimeList"));
+const CardSkeleton = lazy(() => import("@/components/Elements/CardSkeleton"));
+const ErrorText = lazy(() => import("@/components/Elements/ErrorText"));
 
 const ListAnime = () => {
   const [getAnime, setGetAnime] = useState({});
@@ -16,18 +18,8 @@ const ListAnime = () => {
   return (
     <>
       {isloading && <CardSkeleton />}
-      {!isloading && fetchError && (
-        <div>
-          <h1>{fetchError}</h1>
-        </div>
-      )}
-      {!isloading && !fetchError && (
-        <AnimeList
-          isLoading={isloading}
-          fetchError={fetchError}
-          animes={getAnime}
-        />
-      )}
+      {!isloading && fetchError && <ErrorText errorLabel={fetchError} />}
+      {!isloading && !fetchError && <AnimeList animes={getAnime} />}
     </>
   );
 };

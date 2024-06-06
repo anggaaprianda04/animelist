@@ -1,10 +1,13 @@
 "use client";
 
-import CardSkeleton from "@/components/Elements/CardSkeleton";
-import AnimeRecomended from "@/components/Fragments/AnimeRecomended";
+import React, { useEffect, useState, lazy } from "react";
 import useFetchData from "@/hooks/useFetchData";
-import { getNestedAnime, reproduce } from "@/utils";
-import React, { useEffect, useState } from "react";
+
+const AnimeRecomended = lazy(() =>
+  import("@/components/Fragments/AnimeRecomended")
+);
+const CardSkeleton = lazy(() => import("@/components/Elements/CardSkeleton"));
+const ErrorText = lazy(() => import("@/components/Elements/ErrorText"));
 
 const ListAnimeRecom = () => {
   const [animeRecom, setAnimeRecom] = useState({});
@@ -17,11 +20,7 @@ const ListAnimeRecom = () => {
   return (
     <>
       {isloading && <CardSkeleton />}
-      {!isloading && fetchError && (
-        <div>
-          <h1>{fetchError}</h1>
-        </div>
-      )}
+      {!isloading && fetchError && <ErrorText errorLabel={fetchError} />}
       {!isloading && !fetchError && <AnimeRecomended animeRecom={animeRecom} />}
     </>
   );

@@ -6,7 +6,7 @@ const nextConfig = {
         source: "/anime",
         headers: [
           { key: "Content-Type", value: "application/json" },
-          { key: "Cache-Control", value: 's-maxage=1, stale-while-revalidate=59' },
+          { key: "Cache-Control", value: 's-maxage=1, stale-while-revalidate=59, no-store' },
           { key: "If-None-Match", value: "x234dff" },
         ]
       },
@@ -22,6 +22,9 @@ const nextConfig = {
     ]
   },
   reactStrictMode: false,
+  experimental: {
+    nextScriptWorkers: true,
+  }
 }
 
 module.exports = nextConfig
