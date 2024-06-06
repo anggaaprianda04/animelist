@@ -20,3 +20,10 @@ export const reproduce = (data, gap) => {
     }
     return response;
 }
+
+export const ENUM = {
+    ANIME: 'anime',
+    MANGA: 'manga',
+    CHARACTER: 'character',
+    MAGAZINE: 'magazine',
+}

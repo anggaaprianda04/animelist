@@ -1,6 +1,7 @@
 "use client";
 
 import useFetchData from "@/hooks/useFetchData";
+import { ENUM } from "@/utils";
 import React, { useEffect, useState, lazy, Suspense } from "react";
 
 const HeaderMenu = lazy(() => import("@/components/Elements/HeaderMenu"));
@@ -21,10 +22,10 @@ const ListData = ({ type, url }) => {
 
   const loadData = (
     <div className="p-4">
-      {type == "anime" && <CardSkeleton />}
-      {type == "manga" && <CardSkeleton setGridCol="grid-cols-3" />}
-      {type == "character" && <CardSkeleton setHeight="h-56" />}
-      {type == "magazine" && <CardSkeleton setHeight="h-20" />}
+      {type == ENUM.ANIME && <CardSkeleton />}
+      {type == ENUM.MANGA && <CardSkeleton setGridCol="grid-cols-3" />}
+      {type == ENUM.CHARACTER && <CardSkeleton setHeight="h-56" />}
+      {type == ENUM.MAGAZINE && <CardSkeleton setHeight="h-20" />}
     </div>
   );
 
@@ -39,18 +40,18 @@ const ListData = ({ type, url }) => {
         {!isloading && fetchError && <ErrorText errorLabel={fetchError} />}
         {!isloading && !fetchError && (
           <>
-            {type == "anime" && <HeaderMenu title={`List anime #${page}`} />}
-            {type == "manga" && <HeaderMenu title={`List manga #${page}`} />}
-            {type == "character" && (
+            {type == ENUM.ANIME && <HeaderMenu title={`List anime #${page}`} />}
+            {type == ENUM.MANGA && <HeaderMenu title={`List manga #${page}`} />}
+            {type == ENUM.CHARACTER && (
               <HeaderMenu title={`List character #${page}`} />
             )}
-            {type == "magazine" && (
+            {type == ENUM.MAGAZINE && (
               <HeaderMenu title={`List Magazines #${page}`} />
             )}
-            {type == "anime" && <AnimeList animes={getData} />}
-            {type == "manga" && <MangaList getManga={getData} />}
-            {type == "character" && <CharacterList characters={getData} />}
-            {type == "magazine" && <MagazineList getMagazines={getData} />}
+            {type == ENUM.ANIME && <AnimeList animes={getData} />}
+            {type == ENUM.MANGA && <MangaList getManga={getData} />}
+            {type == ENUM.CHARACTER && <CharacterList characters={getData} />}
+            {type == ENUM.MAGAZINE && <MagazineList getMagazines={getData} />}
             <Pagination
               setPage={setPage}
               page={page}
