@@ -14,8 +14,7 @@ const MangaList = ({ getManga }) => {
             <Link key={index} href={manga.url} target={"_blank"}>
               <div className="flex gap-2 p-4 font-medium rounded-md cursor-pointer hover:duration-75 hover:shadow-2xl hover:shadow-color-secondary text-color-white h-72 bg-color-secondary">
                 <Image
-                  className="w-2/6 transition-opacity opacity-0 duration-[1s]"
-                  onLoadingComplete={(e) => e.classList.remove("opacity-0")}
+                  className="w-2/6"
                   width={100}
                   height={100}
                   priority={true}

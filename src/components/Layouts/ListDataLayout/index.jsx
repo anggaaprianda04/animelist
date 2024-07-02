@@ -2,7 +2,7 @@
 
 import useFetchData from "@/hooks/useFetchData";
 import { ENUM } from "@/utils";
-import React, { useEffect, useState, lazy, Suspense } from "react";
+import React, { useEffect, useState, lazy, Suspense, use } from "react";
 
 const HeaderMenu = lazy(() => import("@/components/Elements/HeaderMenu"));
 const ErrorText = lazy(() => import("@/components/Elements/ErrorText"));
@@ -15,7 +15,7 @@ const CharacterList = lazy(() =>
 );
 const MagazineList = lazy(() => import("@/components/Fragments/MagazineList"));
 
-const ListData = ({ type, url }) => {
+const ListDataLayout = ({ type, url }) => {
   const [getData, setData] = useState({});
   const [page, setPage] = useState(1);
   const { data, fetchError, isloading } = useFetchData(url, `page=${page}`);
@@ -65,4 +65,4 @@ const ListData = ({ type, url }) => {
   );
 };
 
-export default ListData;
+export default ListDataLayout;

@@ -43,7 +43,7 @@ const Index = () => {
   }, [debounceSearch, page]);
 
   return (
-    <>
+    <Suspense fallback={<CardSkeleton />}>
       <div className="flex justify-end mt-2 sm:mt-8">
         <Search
           value={search}
@@ -94,7 +94,7 @@ const Index = () => {
           </>
         )}
       </div>
-    </>
+    </Suspense>
   );
 };
 

@@ -1,23 +1,11 @@
 "use client";
 
-import CardSkeleton from "@/components/Elements/CardSkeleton";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { IoIosStar } from "react-icons/io";
 
 const CharacterList = ({ characters }) => {
-  // const [listCharacters, setCharater] = useState({});
-  // const [loading, setLoading] = useState(false);
-
-  // useEffect(() => {
-  //   setLoading(true);
-  //   return () => {
-  //     setCharater(characters);
-  //     setLoading(false);
-  //   };
-  // }, [characters]);
-
   return (
     <>
       <div className="grid grid-cols-1 gap-4 mb-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
@@ -40,9 +28,8 @@ const CharacterList = ({ characters }) => {
                     </div>
                   </div>
                   <Image
-                    className="object-cover transition-opacity opacity-0 duration-[1s] w-2/5 rounded-md h-44"
+                    className="object-cover w-2/5 rounded-md h-44"
                     width={100}
-                    onLoadingComplete={(e) => e.classList.remove("opacity-0")}
                     height={100}
                     src={character?.images?.webp.image_url}
                     alt={character?.images?.webp.image_url}

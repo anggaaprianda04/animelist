@@ -1,10 +1,10 @@
-import ListData from "@/components/Layouts/ListData";
+import ListDataLayout from "@/components/Layouts/ListDataLayout";
 import React from "react";
 
 const Page = () => {
   return (
     <>
-      <ListData type="manga" url="manga" />
+      <ListDataLayout type="manga" url="manga" />
     </>
   );
 };
